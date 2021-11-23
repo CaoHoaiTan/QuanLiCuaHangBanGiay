@@ -31,7 +31,7 @@ create table Product(
 create table Guess (
 	phoneNumber varchar(10) primary key,
 	fullname nvarchar(200),
-	sex varchar(6) check (sex = 'Male' or sex = 'Female'), 
+	sex varchar(6) check (sex = 'Nam' or sex = N'Nữ'), 
 	address nvarchar(max), 
 	email varchar(max),
 	totalCost real not null default 0,
