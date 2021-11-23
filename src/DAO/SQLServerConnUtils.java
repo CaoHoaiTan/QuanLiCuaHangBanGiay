@@ -10,7 +10,7 @@ public class SQLServerConnUtils {
 	public static Connection getSQLServerConnection() throws ClassNotFoundException, SQLException {
 		// Thông tin database
 		String hostName = "localhost";
-	    String database = "QuanLiShop";
+	    String database = "db_sneakers_shop";
 	    String userName = "sa";
 	    String password = "123";
 
@@ -26,13 +26,9 @@ public class SQLServerConnUtils {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
 	    // Cấu trúc URL Connection dành cho SQLServer
-	    // Ví dụ:
-		//jdbc:sqlserver://[serverName[\instanceName][:portNumber]][;property=value[;property=value]]
-		//jdbc:sqlserver://localhost:1433;databaseName=testdb;integratedSecurity=true;
+		// jdbc:sqlserver://localhost:1433;databaseName=testdb;
 	    String connectionURL = "jdbc:sqlserver://" + hostName + ":1433" +
-	            ";databaseName=" + database + 
-	            ";user=" + userName +
-	            ";password=" + password;
+	            ";databaseName=" + database;
 
 	    Connection conn = DriverManager.getConnection(connectionURL, userName,
 	            password);
