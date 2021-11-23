@@ -8,8 +8,8 @@ public class ConnectionUtils {
     public static Connection getConnection() 
               throws ClassNotFoundException, SQLException {
     	// get connection
-       // return SQLServerConnUtils.getSQLServerConnection();
-    	return MySQLConnUtils.getMySQLConnection();
+        return SQLServerConnUtils.getSQLServerConnection();
+//    	return MySQLConnUtils.getMySQLConnection();
     }
      
     public static void closeQuietly(Connection conn) {
