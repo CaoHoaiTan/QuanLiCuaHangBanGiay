@@ -1,6 +1,5 @@
 package GUI;
 
-<<<<<<< HEAD
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -27,15 +26,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
-=======
-import com.formdev.flatlaf.FlatLightLaf;
-import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import javax.swing.plaf.InternalFrameUI;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
-import java.awt.*;
->>>>>>> origin/master
 
 public class QuanLyKhachHang extends JInternalFrame {
 

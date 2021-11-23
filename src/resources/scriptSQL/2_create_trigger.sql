@@ -28,6 +28,7 @@ begin
 end
 else
 	raisError(N'Số lượng hàng trong kho không đủ!', 16, 1, '');
+	rollback;
 go
 
 -- After Update Order

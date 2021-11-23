@@ -409,21 +409,21 @@ GO
 
 -- Account (id, username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
-	values('nam', 'namnamnam', N'Thái Thành Nam', 'img/avatar/nam.jpg', '0981771024', N'Bến Tre', 'Male', '2001-11-28', 0);
+	values('nam', 'namnamnam', N'Thái Thành Nam', 'img/avatar/nam.jpg', '0981771024', N'Bến Tre', 'Nam', '2001-11-28', 0);
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
-	values('tan', 'tantantan', N'Cao Hoài Tấn', 'img/avatar/tan.jpg', '0983234434', N'Bình Định', 'Male', '2001-09-02', 0);
+	values('tan', 'tantantan', N'Cao Hoài Tấn', 'img/avatar/tan.jpg', '0983234434', N'Bình Định', 'Nam', '2001-09-02', 0);
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
-	values('trung', 'trungtrungtrung', N'Nguyễn Ngọc Trung', 'img/avatar/trung.jpg', '0934534534', N'Phú Yên', 'Male', '2001-02-14', 0);
+	values('trung', 'trungtrungtrung', N'Nguyễn Ngọc Trung', 'img/avatar/trung.jpg', '0934534534', N'Phú Yên', 'Nam', '2001-02-14', 0);
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
-	values('admin', 'adminadminadmin', 'Admin', 'img/avatar/admin.jpg', '0999999999', N'TP.HCM', 'Male', '2001-01-01', 1);
+	values('admin', 'adminadminadmin', 'Admin', 'img/avatar/admin.jpg', '0999999999', N'TP.HCM', 'Nam', '2001-01-01', 1);
 
 -- Guess (phoneNumber, fullname, sex, address, email)
 insert into Guess(phoneNumber, fullname, sex, address, email)
-	values('0981771024', 'Nam', 'Male', N'Bến Tre', 'nam@gmail.com');
+	values('0981771024', 'Nam', 'Nam', N'Bến Tre', 'nam@gmail.com');
 insert into Guess(phoneNumber, fullname, sex, address, email)
-	values('0981778765', 'Trung', 'Male', N'Phú Yên', 'trung@gmail.com');
+	values('0981778765', 'Trung', 'Nam', N'Phú Yên', 'trung@gmail.com');
 insert into Guess(phoneNumber, fullname, sex, address, email)
-	values('0981774321', N'Tấn', 'Male', N'Bình Định', 'tan@gmail.com');
+	values('0981774321', N'Tấn', 'Nam', N'Bình Định', 'tan@gmail.com');
 
 -- Order (id, username, cost, purchaseDate, address, phoneNumber, fullname)
 insert into [Order](staffName, phoneNumGuess)

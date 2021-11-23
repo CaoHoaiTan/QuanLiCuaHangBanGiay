@@ -31,7 +31,7 @@ create table Product(
 create table Guess (
 	phoneNumber varchar(10) primary key,
 	fullname nvarchar(200),
-	sex varchar(6) check (sex = 'Male' or sex = 'Female'), 
+	sex varchar(6) check (sex = 'Nam' or sex = N'Nữ'),
 	address nvarchar(max), 
 	email varchar(max),
 	totalCost real not null default 0,
@@ -47,7 +47,7 @@ create table Account (
 	avatar nvarchar(max) default 'img/avatar/avatar.png', 
 	phoneNumber varchar(10), 
 	address nvarchar(max), 
-	sex varchar(6) check (sex = 'Male' or sex = 'Female'), 
+	sex varchar(3) check (sex = 'Nam' or sex = N'Nữ'),
 	dateOfBirth date check (datediff(year, dateOfBirth, getdate()) >= 18), 
 	isAdmin bit default 0
 )
