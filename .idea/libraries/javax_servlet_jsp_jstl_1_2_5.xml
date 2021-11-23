@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="javax.servlet.jsp.jstl-1.2.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../HK5 (HK1 2021-2022)/Java/WebFashion/src/main/webapp/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../HK5 (HK1 2021-2022)/Java/WebFashion/src/main/webapp/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../HK5 (HK1 2021-2022)/Java/WebFashion/src/main/webapp/WEB-INF/lib/mssql-jdbc-9.4.0.jre16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../HK5 (HK1 2021-2022)/Java/WebFashion/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.26.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
