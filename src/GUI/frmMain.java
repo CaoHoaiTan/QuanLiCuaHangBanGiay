@@ -43,7 +43,11 @@ public class frmMain extends JFrame {
 	 * @throws IOException 
 	 */
 	public frmMain() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+<<<<<<< HEAD
 			UnsupportedLookAndFeelException, IOException, SQLException {
+=======
+			UnsupportedLookAndFeelException, IOException {
+>>>>>>> origin/master
 		setIconImage(ImageIO.read(getClass().getResourceAsStream("/resources/icon/shop.png")));
 		setTitle("QUẢN LÝ CỬA HÀNG BÁN GIÀY");
 		UIManager.setLookAndFeel(new FlatLightLaf());
