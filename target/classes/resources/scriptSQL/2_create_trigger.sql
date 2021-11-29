@@ -27,7 +27,10 @@ begin
 	where id = @idProduct
 end
 else
-	raisError(N'Số lượng hàng trong kho không đủ!', 16, 1, '');
+begin
+	raisError(N'Số lượng hàng trong kho không đủ!', 16, 1, '')
+	rollback
+end
 go
 
 -- After Update Order

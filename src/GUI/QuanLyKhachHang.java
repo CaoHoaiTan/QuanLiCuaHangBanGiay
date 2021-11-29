@@ -40,6 +40,7 @@ public class QuanLyKhachHang extends JInternalFrame {
 	private JTable table;
 	private JTextField txtSearch;
 
+
 	/**
 	 * Launch the application.
 	 */

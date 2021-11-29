@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.PreparedStatement;
 
 public class KhachHangModel {
     // List KhachHang to object[][]
@@ -44,7 +45,15 @@ public class KhachHangModel {
         }
         return listKH;
     }
-
+    // delete KhachHang from DB by sdt
+    // return true nếu thành công, false nếu lỗi
+    public static boolean delete_KhachHang(Connection conn, String phoneNumber) throws SQLException {
+        PreparedStatement pstm = conn.prepareStatement("delete from Guess where phoneNumber = ?");
+        pstm.setString(1, phoneNumber);
+        if (pstm.executeUpdate() > 0)
+            return true;
+        return false;
+    }
     // load KhachHang from DB to Obj[][]
     public static Object[][] load_KhachHang_to_Obj(Connection conn) throws SQLException {
         return listKhachHang_to_Obj(load_KhachHang(conn));

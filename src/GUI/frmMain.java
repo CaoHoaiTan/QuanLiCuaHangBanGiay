@@ -64,13 +64,13 @@ public class frmMain extends JFrame {
 		JInternalFrame internalFrame_1 = new JInternalFrame("JIFrm2");
 		tabbedPane.addTab("Hàng hóa", null, internalFrame_1, null);
 
-		JInternalFrame internalFrame_2 = new JInternalFrame("New JInternalFrame");
+		JInternalFrame internalFrame_2 = new QuanLyDonHang();
 		tabbedPane.addTab("Đơn hàng", null, internalFrame_2, null);
 		
 		JInternalFrame internalFrame_3 = new JInternalFrame("New JInternalFrame");
 		tabbedPane.addTab("Thương hiệu", null, internalFrame_3, null);
 		
-		JInternalFrame internalFrame_4 = new JInternalFrame("New JInternalFrame");
+		JInternalFrame internalFrame_4 = new ThongKeDoanhThu();
 		tabbedPane.addTab("Thống kê", null, internalFrame_4, null);
 		
 		JInternalFrame internalFrame_5 = new JInternalFrame("New JInternalFrame");
