@@ -3,22 +3,12 @@ package MODEL;
 import java.sql.Date;
 
 public class SanPham {
-	private int id,idBrand,quantity;
-	private String name,image,describe;
-	private Float cost;
+	private int id, idBrand, quantity;
+	private String name, image, describe;
+	private double cost;
 	private Date saleDate;
-	
-	public SanPham() {}
-	public SanPham(int idBrand, int quantity, String name, String image, String describe, Float cost,
-			Date saleDate) {
-		this.idBrand = idBrand;
-		this.quantity = quantity;
-		this.name = name;
-		this.image = image;
-		this.describe = describe;
-		this.cost = cost;
-	}
-	public SanPham(int id, int idBrand, int quantity, String name, String image, String describe, Float cost,
+
+	public SanPham(int id, int idBrand, String name, String image, String describe, int quantity, double cost,
 			Date saleDate) {
 		this.id = id;
 		this.idBrand = idBrand;
@@ -28,6 +18,18 @@ public class SanPham {
 		this.describe = describe;
 		this.cost = cost;
 		this.saleDate = saleDate;
+	}
+	
+	public SanPham() {}
+	
+	public SanPham(int idBrand, int quantity, String name, String image, String describe, Float cost,
+			Date saleDate) {
+		this.idBrand = idBrand;
+		this.quantity = quantity;
+		this.name = name;
+		this.image = image;
+		this.describe = describe;
+		this.cost = cost;
 	}
 
 
@@ -91,15 +93,14 @@ public class SanPham {
 	}
 
 
-	public Float getCost() {
+
+	public double getCost() {
 		return cost;
 	}
 
-
-	public void setCost(Float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
-
 
 	public Date getSaleDate() {
 		return saleDate;

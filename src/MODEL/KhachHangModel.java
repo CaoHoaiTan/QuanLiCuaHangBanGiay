@@ -3,15 +3,15 @@ package MODEL;
 import DAO.ConnectionUtils;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.PreparedStatement;
 
 public class KhachHangModel {
-    // List KhachHang to object[][]
+	 // List KhachHang to object[][]
     public static Object[][] listKhachHang_to_Obj(List<KhachHang> listKH) {
         Object[][] obj = new Object[listKH.size()][7];
         for (int i = 0; i < listKH.size(); i++) {
@@ -45,19 +45,54 @@ public class KhachHangModel {
         }
         return listKH;
     }
-    // delete KhachHang from DB by sdt
-    // return true nếu thành công, false nếu lỗi
-    public static boolean delete_KhachHang(Connection conn, String phoneNumber) throws SQLException {
-        PreparedStatement pstm = conn.prepareStatement("delete from Guess where phoneNumber = ?");
-        pstm.setString(1, phoneNumber);
-        if (pstm.executeUpdate() > 0)
-            return true;
-        return false;
-    }
+
     // load KhachHang from DB to Obj[][]
     public static Object[][] load_KhachHang_to_Obj(Connection conn) throws SQLException {
         return listKhachHang_to_Obj(load_KhachHang(conn));
     }
+    
+    // delete KhachHang from DB by sdt
+    // return true nếu thành công, false nếu lỗi
+    public static boolean delete_KhachHang(Connection conn, String phoneNumber) throws SQLException {
+    	PreparedStatement pstm = conn.prepareStatement("delete from Guess where phoneNumber = ?");
+    	pstm.setString(1, phoneNumber);
+    	if (pstm.executeUpdate() > 0)
+    		return true;
+    	return false;
+    }
+    
+    // insert KhachHang to DB
+    public static boolean insert_KhachHang(Connection conn, KhachHang KH) throws SQLException {
+    	PreparedStatement pstm = conn.prepareStatement("insert into Guess(phoneNumber, fullname, sex, address, email) "
+    			+ "	values(?, ?, ?, ?, ?)");
+    	pstm.setString(1, KH.getPhoneNumber());
+    	pstm.setString(2, KH.getFullname());
+    	pstm.setString(3, KH.getSex());
+    	pstm.setString(4, KH.getAddress());
+    	pstm.setString(5, KH.getEmail());
+    	if (pstm.executeUpdate() > 0)
+    		return true;
+    	return false;
+    }
+    
+    // update KhachHang to DB
+    public static boolean update_KhachHang(Connection conn, KhachHang KH) throws SQLException {
+    	PreparedStatement pstm = conn.prepareStatement("update Guess set "
+    			+ "fullname = ?, "
+    			+ "sex = ?, "
+    			+ "address = ?, "
+    			+ "email= ? "
+    			+ "where phoneNumber = ?");
+    	pstm.setString(1, KH.getFullname());
+    	pstm.setString(2, KH.getSex());
+    	pstm.setString(3, KH.getAddress());
+    	pstm.setString(4, KH.getEmail());
+    	pstm.setString(5, KH.getPhoneNumber());
+    	if (pstm.executeUpdate() > 0)
+    		return true;
+    	return false;
+    }
+    
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.out.println(load_KhachHang(ConnectionUtils.getConnection()));

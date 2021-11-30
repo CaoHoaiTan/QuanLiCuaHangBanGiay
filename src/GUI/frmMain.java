@@ -1,11 +1,20 @@
 package GUI;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JInternalFrame;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -41,45 +50,54 @@ public class frmMain extends JFrame {
 	 * @throws InstantiationException
 	 * @throws ClassNotFoundException
 	 * @throws IOException 
+	 * @throws SQLException 
 	 */
 	public frmMain() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			UnsupportedLookAndFeelException, IOException, SQLException {
-		setIconImage(ImageIO.read(getClass().getResourceAsStream("/resources/icon/shop.png")));
+		ImageIcon imgSanPham = new ImageIcon("resources/icon/shop.png");
+		Image img = imgSanPham.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+		setIconImage(img);
 		setTitle("QUẢN LÝ CỬA HÀNG BÁN GIÀY");
+		setFont(new Font("Tahoma", Font.BOLD, 16));
 		UIManager.setLookAndFeel(new FlatLightLaf());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 1120, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(5, 5));
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane);
+		JInternalFrame qlKhachHang = new QuanLyKhachHang();
+		tabbedPane.addTab("Khách hàng", null, qlKhachHang, null);
+		JInternalFrame qlHangHoa = new QuanLyHangHoa();
+		tabbedPane.addTab("Hàng hóa", null, qlHangHoa, null);
 
-		JInternalFrame internalFrame = new QuanLyKhachHang();
-		tabbedPane.addTab("Khách hàng", null, internalFrame, null);
+		JInternalFrame qlDonHang = new QuanLyDonHang();
+		tabbedPane.addTab("Đơn hàng", null, qlDonHang, null);
+		
+		JInternalFrame thongKe = new ThongKeDoanhThu();
+		tabbedPane.addTab("Thống kê", null, thongKe, null);
+		
+		JInternalFrame qlThuongHieu = new QuanLyThuongHieu();
+		tabbedPane.addTab("Thương hiệu", null, qlThuongHieu, null);
+		qlThuongHieu.setVisible(true);
+		
+		JInternalFrame qlNhanVien = new QuanLyNhanVien();
+		tabbedPane.addTab("Nhân viên", null, qlNhanVien, null);
+		
+//		qlNhanVien.setVisible(true);
+//		qlDonHang.setVisible(true);
+//		thongKe.setVisible(true);
+//		qlKhachHang.setVisible(true);
+//		qlHangHoa.setVisible(true);
+		
 		tabbedPane.setEnabledAt(0, true);
-
-		JInternalFrame internalFrame_1 = new JInternalFrame("JIFrm2");
-		tabbedPane.addTab("Hàng hóa", null, internalFrame_1, null);
-
-		JInternalFrame internalFrame_2 = new QuanLyDonHang();
-		tabbedPane.addTab("Đơn hàng", null, internalFrame_2, null);
-		
-		JInternalFrame internalFrame_3 = new JInternalFrame("New JInternalFrame");
-		tabbedPane.addTab("Thương hiệu", null, internalFrame_3, null);
-		
-		JInternalFrame internalFrame_4 = new ThongKeDoanhThu();
-		tabbedPane.addTab("Thống kê", null, internalFrame_4, null);
-		
-		JInternalFrame internalFrame_5 = new JInternalFrame("New JInternalFrame");
-		tabbedPane.addTab("Nhân viên", null, internalFrame_5, null);
-		internalFrame_5.setVisible(true);
-		internalFrame_4.setVisible(true);
-		internalFrame_3.setVisible(true);
-		internalFrame_2.setVisible(true);
-		internalFrame_1.setVisible(true);
-		internalFrame.setVisible(true);
+		tabbedPane.setEnabledAt(1, true);
+		tabbedPane.setEnabledAt(2, true);
+		tabbedPane.setEnabledAt(3, true);
+		tabbedPane.setEnabledAt(4, true);
+		tabbedPane.setEnabledAt(5, true);
 	}
 }
