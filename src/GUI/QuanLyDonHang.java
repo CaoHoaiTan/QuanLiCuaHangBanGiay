@@ -66,67 +66,67 @@ import java.awt.event.ActionEvent;
 
 public class QuanLyDonHang extends JInternalFrame {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-    private JTextField txtTenKH;
-    private JTextField txtAddress;
-    private JTextField txtTotalCost;
-    private JTextField txtSearch;
-    private JComboBox cmbPhone;
-    private JComboBox cmbMaNV;
-    private JTable tblDetail;
-    private JScrollPane scrollPane = new JScrollPane();
-    private JTextField txtTenNV;
-    private JButton btnHuy = new JButton("Hủy");
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField txtTenKH;
+	private JTextField txtAddress;
+	private JTextField txtTotalCost;
+	private JTextField txtSearch;
+	private JComboBox cmbPhone;
+	private JComboBox cmbMaNV;
+	private JTable tblDetail;
+	private JScrollPane scrollPane = new JScrollPane();
+	private JTextField txtTenNV;
+	private JButton btnHuy = new JButton("Hủy");
 	private JButton btnLuu = new JButton("Lưu");
 	private JButton btnXoa = new JButton("Xóa");
 	private JButton btnSua = new JButton("Sửa");
 	private JButton btnThem = new JButton("Thêm");
-    private JButton btnTim;
-    private JPanel search_panel;
-    private JPanel input_panel;
-    private boolean them = true;
-    private boolean tim = true;
-    private DefaultTableModel model;
-    
-    private int discount = 0;
-    
-    private int rowtable=0;
-	private JLabel lblDiscount = new JLabel("Ưu đãi 0%");
-	private JLabel lblTotalcost =  new JLabel("Tổng số tiền đã mua: vnđ");
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    QuanLyDonHang frame = new QuanLyDonHang();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	private JButton btnTim;
+	private JPanel search_panel;
+	private JPanel input_panel;
+	private boolean them = true;
+	private boolean tim = true;
+	private DefaultTableModel model;
+
+	private int discount = 0;
+
+	private int rowtable=0;
+	private JLabel lblDiscount;
+	private JLabel lblTotalcost;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					QuanLyDonHang frame = new QuanLyDonHang();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	JComboBox addcusToTable(JComboBox cmbx)
 	{
 		//JComboBox cbxBox = null;
 		try {
 			Connection conn = ConnectionUtils.getConnection();
 			Statement st = conn.createStatement();
-			
+
 			String sql = "Select * from Product";
-			
+
 			ResultSet rs = st.executeQuery(sql);
-		//	cbxBox = new JComboBox();
+			//	cbxBox = new JComboBox();
 			while(rs.next())
 			{
 				cmbx.addItem(rs.getString(1));
 			}
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,143 +138,143 @@ public class QuanLyDonHang extends JInternalFrame {
 	}
 	void initDataTable(JComboBox cmbx) {
 		DefaultCellEditor cusCell = new DefaultCellEditor(addcusToTable(cmbx));
-		
+
 		tblDetail.getColumnModel().getColumn(1).setCellEditor(cusCell);
 		tblDetail.setColumnSelectionAllowed(true);
-		
+
 	}
-  //Tạo table
-  	void createTable()
-  	{
-        scrollPane = new JScrollPane();
-        getContentPane().add(scrollPane, "cell 0 2,grow");
-        
-        //Tạo table
-  		tblDetail = new JTable();
-  		
-  		//Tạo DefaultTableModel
-  		model = new DefaultTableModel();
-  		
-  		model.addColumn("STT");
-  		model.addColumn("Mã Sản phẩm");
-  		model.addColumn("Tên sản phẩm");
-  		model.addColumn("Đơn giá");
-  		model.addColumn("Số lượng");
-  		model.addColumn("Thành tiền");
-  		
-  		
-  		Object[] data = {1,"","",0,0,""};	
-  		
-  		model.addRow(data);
-  		
-  		
-  		tblDetail.setModel(model);
-  		
-  		TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-  		JComboBox cmbHH = new JComboBox();
-  		
-  		
-  		//Add comboBox
-  		initDataTable(cmbHH);
-  		
+	//Tạo table
+	void createTable()
+	{
+		scrollPane = new JScrollPane();
+		getContentPane().add(scrollPane, "cell 0 2,grow");
 
-  		 		
-  		
-  		tblDetail.getModel().addTableModelListener(new TableModelListener() {
-  			
-  			public void tableChanged(TableModelEvent e) {
-  				// TODO Auto-generated method stub
-  				
-  				// Tự động tính thành tiền
-  				if(e.getColumn()==3 || e.getColumn() ==4) {
-  					int row = e.getFirstRow();
-  					int gia = Integer.valueOf(tblDetail.getValueAt(row, 3).toString());
-  					int soLuong =  Integer.valueOf(tblDetail.getValueAt(row, 4).toString());
-  					
-  					if(gia >=0 && soLuong >=0) {
-  						float thanhtien = gia * soLuong;
-  						Float sum = Float.parseFloat(txtTotalCost.getText());
-  						sum += thanhtien - thanhtien * discount /100;
-  						txtTotalCost.setText(String.format("%.0f", sum));
-  						
-  						tblDetail.setValueAt(String.format("%.0f", thanhtien), row, 5);
-  						
-  					}
-  					//Update lại tổng tiền đơn hàng
-						
-	    	  			float sum = 0;
-	    	  			   	  			
-	    	  		
-	    	  			for(int i=0;i< tblDetail.getRowCount();i++)
-						{
-	    	  				if(tblDetail.getValueAt(i,5) != "")
-	    	  					sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)));
-						}
-	    	  			
-	    	  			sum -= sum * discount /100;
-	    	  			txtTotalCost.setText(String.format("%.0f", sum));
-  					
-  					
-  					
-  				}
-  				else if(e.getColumn() == 1)
-  				{
-  					//CHọn mã hàng hóa để lấy giá tiền
-  					int row = e.getFirstRow();
-  					int col = e.getColumn();
-  					
-  					int maSP = Integer.parseInt(tblDetail.getValueAt(row, col).toString());
-  					try {
-  						Connection conn = ConnectionUtils.getConnection();
-  						double gia = SanPhamModel.getSanPhamBymaSP(conn, maSP).getCost();
-  						String tenSP = SanPhamModel.getSanPhamBymaSP(conn, maSP).getName();
-  						
-  						tblDetail.setValueAt(tenSP, row, 2);
-  						tblDetail.setValueAt(String.format("%.0f", gia), row, 3);
-  						//
-  						tblDetail.setValueAt(1, row, 4);
-  						
-  					} catch (ClassNotFoundException e1) {
-  						// TODO Auto-generated catch block
-  						e1.printStackTrace();
-  					} catch (SQLException e1) {
-  						// TODO Auto-generated catch block
-  						e1.printStackTrace();
-  					}
-  					
-					
-    	  			
-  					if(e.getFirstRow() == tblDetail.getRowCount() - 1)
-  					{
-  						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
-  						
-  						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-  						JComboBox cmbHH = new JComboBox();
-  						
-  						
-  						//Add comboBox
-  						initDataTable(cmbHH);
-  						
-  						tblDetail.setModel(model);
-  						
-  					}
-  					
-  				}
-  				
-  								
-  			}
-  		});
-  		
+		//Tạo table
+		tblDetail = new JTable();
 
-  		scrollPane.setViewportView(tblDetail);
-  		
-  		
-  		tblDetail.setEnabled(false);
+		//Tạo DefaultTableModel
+		model = new DefaultTableModel();
 
-  		//
-  		them = true;
-  		tim = true;
-  		
+		model.addColumn("STT");
+		model.addColumn("Mã Sản phẩm");
+		model.addColumn("Tên sản phẩm");
+		model.addColumn("Đơn giá");
+		model.addColumn("Số lượng");
+		model.addColumn("Thành tiền");
+
+
+		Object[] data = {1,"","",0,0,""};
+
+		model.addRow(data);
+
+
+		tblDetail.setModel(model);
+
+		TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
+		JComboBox cmbHH = new JComboBox();
+
+
+		//Add comboBox
+		initDataTable(cmbHH);
+
+
+
+
+		tblDetail.getModel().addTableModelListener(new TableModelListener() {
+
+			public void tableChanged(TableModelEvent e) {
+				// TODO Auto-generated method stub
+
+				// Tự động tính thành tiền
+				if(e.getColumn()==3 || e.getColumn() ==4) {
+					int row = e.getFirstRow();
+					int gia = Integer.valueOf(tblDetail.getValueAt(row, 3).toString());
+					int soLuong =  Integer.valueOf(tblDetail.getValueAt(row, 4).toString());
+
+					if(gia >=0 && soLuong >=0) {
+						float thanhtien = gia * soLuong;
+						Float sum = Float.parseFloat(txtTotalCost.getText());
+						sum += thanhtien - thanhtien * discount /100;
+						txtTotalCost.setText(String.format("%.0f", sum));
+
+						tblDetail.setValueAt(String.format("%.0f", thanhtien), row, 5);
+
+					}
+					//Update lại tổng tiền đơn hàng
+
+					float sum = 0;
+
+
+					for(int i=0;i< tblDetail.getRowCount();i++)
+					{
+						if(tblDetail.getValueAt(i,5) != "")
+							sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)));
+					}
+
+					sum -= sum * discount /100;
+					txtTotalCost.setText(String.format("%.0f", sum));
+
+
+
+				}
+				else if(e.getColumn() == 1)
+				{
+					//CHọn mã hàng hóa để lấy giá tiền
+					int row = e.getFirstRow();
+					int col = e.getColumn();
+
+					int maSP = Integer.parseInt(tblDetail.getValueAt(row, col).toString());
+					try {
+						Connection conn = ConnectionUtils.getConnection();
+						double gia = SanPhamModel.getSanPhamBymaSP(conn, maSP).getCost();
+						String tenSP = SanPhamModel.getSanPhamBymaSP(conn, maSP).getName();
+
+						tblDetail.setValueAt(tenSP, row, 2);
+						tblDetail.setValueAt(String.format("%.0f", gia), row, 3);
+						//
+						tblDetail.setValueAt(1, row, 4);
+
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+
+
+					if(e.getFirstRow() == tblDetail.getRowCount() - 1)
+					{
+						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
+
+						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
+						JComboBox cmbHH = new JComboBox();
+
+
+						//Add comboBox
+						initDataTable(cmbHH);
+
+						tblDetail.setModel(model);
+
+					}
+
+				}
+
+
+			}
+		});
+
+
+		scrollPane.setViewportView(tblDetail);
+
+
+		tblDetail.setEnabled(false);
+
+		//
+		them = true;
+		tim = true;
+
 		// Bật tắt các nút
 		btnThem.setEnabled(true);
 		btnSua.setEnabled(false);
@@ -290,47 +290,47 @@ public class QuanLyDonHang extends JInternalFrame {
 
 		// Bật search panel
 		setEnableAll(search_panel, true);
-  	}
-    
-    
-    
-  	private void AddItemPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
-    	Connection conn = ConnectionUtils.getConnection();
+	}
+
+
+
+	private void AddItemPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
+		Connection conn = ConnectionUtils.getConnection();
 		Statement st = conn.createStatement();
-		
+
 		String sql = "Select * from Guess";
-		
+
 		ResultSet rs = st.executeQuery(sql);
 		while(rs.next())
 		{
 			cmbPhone.addItem(rs.getString(1));
 		}
-			
-    }
-  	
-  	private void AddItemMaNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
-    	Connection conn = ConnectionUtils.getConnection();
+
+	}
+
+	private void AddItemMaNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
+		Connection conn = ConnectionUtils.getConnection();
 		Statement st = conn.createStatement();
-		
+
 		String sql = "Select * from Account";
-		
+
 		ResultSet rs = st.executeQuery(sql);
 		while(rs.next())
 		{
 			cmbMaNV.addItem(rs.getString(2));
 		}
-			
-    }
-  	
-	  private void LoadTxt_FromPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
-	    String Phone = String.valueOf(cmbPhone.getSelectedItem());
+
+	}
+
+	private void LoadTxt_FromPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
+		String Phone = String.valueOf(cmbPhone.getSelectedItem());
 		try {
 			Connection conn = ConnectionUtils.getConnection();
 			String sql = "Select fullname, address, discount,totalCost  from Guess where phoneNumber = ?";
-			
+
 			PreparedStatement pstm = conn.prepareStatement(sql);
-			
-		
+
+
 			pstm.setString(1, Phone);
 
 			ResultSet rs = pstm.executeQuery();
@@ -348,177 +348,177 @@ public class QuanLyDonHang extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-			
-	  }
-	  
-	  private void LoadTenNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
-		    String maNV = String.valueOf(cmbMaNV.getSelectedItem());
-			try {
-				Connection conn = ConnectionUtils.getConnection();
-				String sql = "Select fullname  from Account where username = ?";
-				
-				PreparedStatement pstm = conn.prepareStatement(sql);
-				
-			
-				pstm.setString(1, maNV);
 
-				ResultSet rs = pstm.executeQuery();
-				while (rs.next()) {
-					txtTenNV.setText(rs.getString("fullname"));
-				}
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+	}
+
+	private void LoadTenNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
+		String maNV = String.valueOf(cmbMaNV.getSelectedItem());
+		try {
+			Connection conn = ConnectionUtils.getConnection();
+			String sql = "Select fullname  from Account where username = ?";
+
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+
+			pstm.setString(1, maNV);
+
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				txtTenNV.setText(rs.getString("fullname"));
 			}
-				
-		  }
-	  
-	  
-	  void getChiTietDonHangToTable(Connection conn,int maDH) throws SQLException
-		{
-			List<ChiTietDonHang> listCTDH = new ArrayList<ChiTietDonHang>();
-			
-			try {
-				listCTDH = ChiTietDonHangModel.getChiTietDonHangBymaDH(conn, maDH);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			tblDetail = new JTable();
-			
-			
-			//Tạo DefaultTableModel
-	  		model = new DefaultTableModel();
-	  		
-	  		
-	  		model.addColumn("STT");
-	  		model.addColumn("Mã Sản phẩm");
-	  		model.addColumn("Tên sản phẩm");
-	  		model.addColumn("Đơn giá");
-	  		model.addColumn("Số lượng");
-	  		model.addColumn("Thành tiền");
-	  				  		
-	  		
-			for(int i=0 ; i<listCTDH.size();i++) {		
-				model.addRow(new Object[] {i + 1 ,
-						listCTDH.get(i).getIdProduct(),
-						(SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getName(),
-						String.format("%.0f", (SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getCost()),
-						listCTDH.get(i).getQuantity(),
-						String.format("%.0f",(listCTDH.get(i).getQuantity() * (SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getCost()))
-						});
-				
-				tblDetail.setModel(model);
-				
-				TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-				JComboBox cmbHH = new JComboBox();
-							
-				//Add comboBox
-				initDataTable(cmbHH);
-				
-							
-			}
-			
-//			Object[] data = {listCTDH.size() +1 ,"","",0,0,""};	
-//	  		
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
+
+
+	void getChiTietDonHangToTable(Connection conn,int maDH) throws SQLException
+	{
+		List<ChiTietDonHang> listCTDH = new ArrayList<ChiTietDonHang>();
+
+		try {
+			listCTDH = ChiTietDonHangModel.getChiTietDonHangBymaDH(conn, maDH);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tblDetail = new JTable();
+
+
+		//Tạo DefaultTableModel
+		model = new DefaultTableModel();
+
+
+		model.addColumn("STT");
+		model.addColumn("Mã Sản phẩm");
+		model.addColumn("Tên sản phẩm");
+		model.addColumn("Đơn giá");
+		model.addColumn("Số lượng");
+		model.addColumn("Thành tiền");
+
+
+		for(int i=0 ; i<listCTDH.size();i++) {
+			model.addRow(new Object[] {i + 1 ,
+					listCTDH.get(i).getIdProduct(),
+					(SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getName(),
+					String.format("%.0f", (SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getCost()),
+					listCTDH.get(i).getQuantity(),
+					String.format("%.0f",(listCTDH.get(i).getQuantity() * (SanPhamModel.getSanPhamBymaSP(conn, listCTDH.get(i).getIdProduct())).getCost()))
+			});
+
+			tblDetail.setModel(model);
+
+			TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
+			JComboBox cmbHH = new JComboBox();
+
+			//Add comboBox
+			initDataTable(cmbHH);
+
+
+		}
+
+//			Object[] data = {listCTDH.size() +1 ,"","",0,0,""};
+//
 //	  		model.addRow(data);
-	  		
-			
-			
 
-	 		
-	  		// Tự động tính thành tiền
-	  		tblDetail.getModel().addTableModelListener(new TableModelListener() {
-	  			
-	  			public void tableChanged(TableModelEvent e) {
-	  				// TODO Auto-generated method stub
-	  				
-	  				// 
-	  				if(e.getColumn()==3 || e.getColumn() ==4) {
-	  					int row = e.getFirstRow();
-	  					Float gia = Float.valueOf(tblDetail.getValueAt(row, 3).toString());
-	  					int soLuong =  Integer.valueOf(tblDetail.getValueAt(row, 4).toString());
-	  					
-	  					
-	  					if(gia >=0 && soLuong >=0) {
-	  						float thanhtien = gia * soLuong;
+
+
+
+
+		// Tự động tính thành tiền
+		tblDetail.getModel().addTableModelListener(new TableModelListener() {
+
+			public void tableChanged(TableModelEvent e) {
+				// TODO Auto-generated method stub
+
+				//
+				if(e.getColumn()==3 || e.getColumn() ==4) {
+					int row = e.getFirstRow();
+					Float gia = Float.valueOf(tblDetail.getValueAt(row, 3).toString());
+					int soLuong =  Integer.valueOf(tblDetail.getValueAt(row, 4).toString());
+
+
+					if(gia >=0 && soLuong >=0) {
+						float thanhtien = gia * soLuong;
 //	  						float sum = Float.parseFloat(txtTotalCost.getText());
 //	  						sum += thanhtien - thanhtien * discount /100;
 //	  						txtTotalCost.setText(String.format("%.0f", sum));
-	  						
-	  						tblDetail.setValueAt(String.format("%.0f", thanhtien), row, 5);
-	  					}
-	  					
-	  					//Update lại tổng tiền đơn hàng
-						
-	    	  			float sum = 0;
-	    	  			   	  			
-	    	  		
-	    	  			for(int i=0;i< tblDetail.getRowCount();i++)
-						{
-	    	  				if(tblDetail.getValueAt(i,5) != "")
-	    	  					sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)));
-						}
-	    	  			
-	    	  			sum -= sum * discount /100;
-	    	  			txtTotalCost.setText(String.format("%.0f", sum));
-	  				}
-	  				else if(e.getColumn() == 1)
-	  				{
-	  					//CHọn mã hàng hóa để lấy giá tiền
-	  					int row = e.getFirstRow();
-	  					int col = e.getColumn();
-	  					
-	  					int maSP = Integer.parseInt(tblDetail.getValueAt(row, col).toString());
-	  					try {
-	  						Connection conn = ConnectionUtils.getConnection();
-	  						double gia = SanPhamModel.getSanPhamBymaSP(conn, maSP).getCost();
-	  						String tenSP = SanPhamModel.getSanPhamBymaSP(conn, maSP).getName();
-	  						
-	  						tblDetail.setValueAt(tenSP, row, 2);
-	  						tblDetail.setValueAt(String.format("%.0f", gia), row, 3);
-	  						//
-	  						tblDetail.setValueAt(1, row, 4);
-	  						
-	  					} catch (ClassNotFoundException e1) {
-	  						// TODO Auto-generated catch block
-	  						e1.printStackTrace();
-	  					} catch (SQLException e1) {
-	  						// TODO Auto-generated catch block
-	  						e1.printStackTrace();
-	  					}
-	  					
-	  					if(e.getFirstRow() == tblDetail.getRowCount() - 1)
-	  					{
-	  						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
-	  						
-	  						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-	  						JComboBox cmbHH = new JComboBox();
-	  						
-	  						
-	  						//Add comboBox
-	  						initDataTable(cmbHH);
-	  						
-	  						tblDetail.setModel(model);
-	  						
-	  					}
-	  					
-	  				}
-	  				
-	  								
-	  			}
-	  		});
-	  		
-	  		//
-	  		scrollPane.setViewportView(tblDetail);
-		}
+
+						tblDetail.setValueAt(String.format("%.0f", thanhtien), row, 5);
+					}
+
+					//Update lại tổng tiền đơn hàng
+
+					float sum = 0;
+
+
+					for(int i=0;i< tblDetail.getRowCount();i++)
+					{
+						if(tblDetail.getValueAt(i,5) != "")
+							sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)));
+					}
+
+					sum -= sum * discount /100;
+					txtTotalCost.setText(String.format("%.0f", sum));
+				}
+				else if(e.getColumn() == 1)
+				{
+					//CHọn mã hàng hóa để lấy giá tiền
+					int row = e.getFirstRow();
+					int col = e.getColumn();
+
+					int maSP = Integer.parseInt(tblDetail.getValueAt(row, col).toString());
+					try {
+						Connection conn = ConnectionUtils.getConnection();
+						double gia = SanPhamModel.getSanPhamBymaSP(conn, maSP).getCost();
+						String tenSP = SanPhamModel.getSanPhamBymaSP(conn, maSP).getName();
+
+						tblDetail.setValueAt(tenSP, row, 2);
+						tblDetail.setValueAt(String.format("%.0f", gia), row, 3);
+						//
+						tblDetail.setValueAt(1, row, 4);
+
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					if(e.getFirstRow() == tblDetail.getRowCount() - 1)
+					{
+						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
+
+						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
+						JComboBox cmbHH = new JComboBox();
+
+
+						//Add comboBox
+						initDataTable(cmbHH);
+
+						tblDetail.setModel(model);
+
+					}
+
+				}
+
+
+			}
+		});
+
+		//
+		scrollPane.setViewportView(tblDetail);
+	}
 
 	// Cài đặt bật tắt cho container như jpanel
-		private void setEnableAll(Component component, boolean enable) {
-			component.setEnabled(enable);
+	private void setEnableAll(Component component, boolean enable) {
+		component.setEnabled(enable);
 //			try {
 //				Component[] components = ((JComponent) component).getComponents();
 //				for (int i = 0; i < components.length; i++) {
@@ -527,87 +527,87 @@ public class QuanLyDonHang extends JInternalFrame {
 //			} catch (ClassCastException e) {
 //
 //			}
-		}
+	}
 
-		// Reset input text
-		private void resetInputText() {
-			txtTotalCost.setText("0");
-			lblDiscount.setText("Ưu đãi: 0%");
-			lblTotalcost.setText("Tổng tiền đã mua: 0vnđ");
-		}
-    /**
-     * Create the frame.
-     *
-     * @throws UnsupportedLookAndFeelException
-     */
-    public QuanLyDonHang() throws UnsupportedLookAndFeelException {
-        setFrameIcon(null);
-        setBorder(null);
-        UIManager.setLookAndFeel(new FlatLightLaf());
-        //Tạo frame thông báo
-        final JFrame frame = new JFrame();
-        ImageIcon imgSanPham = new ImageIcon("resources/icon/shop.png");
-		Image img = imgSanPham.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-        frame.setIconImage(img);
-        //
-
-        setBounds(100, 100, 891, 706);
-        getContentPane().setLayout(new MigLayout("", "[grow]", "[][][grow][]"));
+	// Reset input text
+	private void resetInputText() {
+		txtTotalCost.setText("0");
+		lblDiscount.setText("Ưu đãi: 0%");
+		lblTotalcost.setText("Tổng tiền đã mua: 0vnđ");
+	}
+	/**
+	 * Create the frame.
+	 *
+	 * @throws UnsupportedLookAndFeelException
+	 */
+	public QuanLyDonHang() throws UnsupportedLookAndFeelException {
+		setFrameIcon(null);
+		setBorder(null);
+		UIManager.setLookAndFeel(new FlatLightLaf());
+		//Tạo frame thông báo
+		final JFrame frame = new JFrame();
+		ImageIcon imgSanPham = new ImageIcon("resources/icon/shop.png");
+		Image img = imgSanPham.getImage().getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
+		frame.setIconImage(img);
 		//
-        input_panel = new JPanel();
-        getContentPane().add(input_panel, "cell 0 0,grow");
-        input_panel.setLayout(new MigLayout("", "[][grow][][][][grow]", "[24px][24px][24px][24px][24px][24px]"));
-        
-        //
-        JLabel lblNewLabel_1 = new JLabel("Số điện thoại:");
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblNewLabel_1, "flowy,cell 0 0,alignx left,aligny center");
-        
-        //Thêm các item vào ComboBox 
-        cmbPhone = new JComboBox();      
-        try {
-        	AddItemPhone(cmbPhone);
+
+		setBounds(100, 100, 891, 706);
+		getContentPane().setLayout(new MigLayout("", "[grow]", "[][][grow][]"));
+		//
+		input_panel = new JPanel();
+		getContentPane().add(input_panel, "cell 0 0,grow");
+		input_panel.setLayout(new MigLayout("", "[][grow][][][][grow]", "[24px][24px][24px][24px][24px][24px]"));
+
+		//
+		JLabel lblNewLabel_1 = new JLabel("Số điện thoại:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblNewLabel_1, "flowy,cell 0 0,alignx left,aligny center");
+
+		//Thêm các item vào ComboBox
+		cmbPhone = new JComboBox();
+		try {
+			AddItemPhone(cmbPhone);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}       
-        input_panel.add(cmbPhone, "cell 1 0,growx");
-        
-        
-        JLabel lblNewLabel = new JLabel("Tên khách hàng:");
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblNewLabel, "cell 0 1,alignx trailing,aligny center");
-        
-        txtTenKH = new JTextField();
-        txtTenKH.setEnabled(false);
-        txtTenKH.setFont(new Font("Tahoma", Font.BOLD, 16));
-        txtTenKH.setColumns(10);
-        txtTenKH.enable(false);
-        input_panel.add(txtTenKH, "cell 1 1,growx,aligny top");
-        
-        JLabel lblNewLabel_3 = new JLabel("Địa chỉ:");
-        lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblNewLabel_3, "cell 0 2,alignx left,aligny center");
-        
-        txtAddress = new JTextField();
-        txtAddress.setEnabled(false);
-        txtAddress.setFont(new Font("Tahoma", Font.BOLD, 16));
-        txtAddress.setColumns(10);
-        txtAddress.enable(false);
-        input_panel.add(txtAddress, "cell 1 2,growx,aligny top");
+		}
+		input_panel.add(cmbPhone, "cell 1 0,growx");
 
-   //   lblDiscount = new JLabel("Ưu đãi 0%");
-        lblDiscount.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblDiscount, "cell 0 5,alignx left,aligny center");
 
-      //  lblTotalcost = new JLabel("Tổng số tiền đã mua: vnđ");
-        lblTotalcost.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblTotalcost, "cell 1 5,growx,aligny center");
-        //Load giá trị txt từ cmbPhone
-        try {
+		JLabel lblNewLabel = new JLabel("Tên khách hàng:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblNewLabel, "cell 0 1,alignx trailing,aligny center");
+
+		txtTenKH = new JTextField();
+		txtTenKH.setEnabled(false);
+		txtTenKH.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtTenKH.setColumns(10);
+		txtTenKH.enable(false);
+		input_panel.add(txtTenKH, "cell 1 1,growx,aligny top");
+
+		JLabel lblNewLabel_3 = new JLabel("Địa chỉ:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblNewLabel_3, "cell 0 2,alignx left,aligny center");
+
+		txtAddress = new JTextField();
+		txtAddress.setEnabled(false);
+		txtAddress.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtAddress.setColumns(10);
+		txtAddress.enable(false);
+		input_panel.add(txtAddress, "cell 1 2,growx,aligny top");
+
+		lblDiscount = new JLabel();
+		lblDiscount.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblDiscount, "cell 0 5,alignx left,aligny center");
+
+		lblTotalcost = new JLabel();
+		lblTotalcost.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblTotalcost, "cell 1 5,growx,aligny center");
+		//Load giá trị txt từ cmbPhone
+		try {
 			LoadTxt_FromPhone(cmbPhone);
 		} catch (ClassNotFoundException e2) {
 			// TODO Auto-generated catch block
@@ -616,21 +616,21 @@ public class QuanLyDonHang extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-        
-        //Event ComboBox Phone
-        cmbPhone.addItemListener(new ItemListener() {	
+
+		//Event ComboBox Phone
+		cmbPhone.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				
+
 				JComboBox<String> cmb = (JComboBox<String>) e.getSource();
-				
+
 				String phone = String.valueOf(cmb.getSelectedItem());
 				try {
 					Connection conn = ConnectionUtils.getConnection();
 					String sql = "Select fullname, address, discount,totalCost  from Guess where phoneNumber = ?";
-					
+
 					PreparedStatement pstm = conn.prepareStatement(sql);
-									
+
 					pstm.setString(1, phone);
 
 					ResultSet rs = pstm.executeQuery();
@@ -641,21 +641,21 @@ public class QuanLyDonHang extends JInternalFrame {
 						lblDiscount.setText("Ưu đãi: " + String.valueOf(rs.getInt("discount")) + "%");
 						lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%.0f", rs.getFloat("totalCost"))+ " vnđ");
 					}
-					
+
 					//Update lại tổng tiền đơn hàng
-					
-    	  			float sum = 0;
-    	  			   	  			
-    	  			//Do có hàng cuối trống nên -1
-    	  			for(int i=0;i< tblDetail.getRowCount()-1;i++)
+
+					float sum = 0;
+
+					//Do có hàng cuối trống nên -1
+					for(int i=0;i< tblDetail.getRowCount()-1;i++)
 					{
-    	  				sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
+						sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
 					}
-    	  			
-    	  			sum -= sum * discount /100;
-    	  			txtTotalCost.setText(String.format("%.0f", sum));
-					
-					
+
+					sum -= sum * discount /100;
+					txtTotalCost.setText(String.format("%.0f", sum));
+
+
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -663,18 +663,18 @@ public class QuanLyDonHang extends JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-							
+
 			}
 		});
-                
-        JLabel lblNewLabel_2 = new JLabel("Tài khoản nhân viên:");
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblNewLabel_2, "flowx,cell 3 0");
-        
-        //ComboBox NV
-        cmbMaNV = new JComboBox();
-        
-        try {
+
+		JLabel lblNewLabel_2 = new JLabel("Tài khoản nhân viên:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblNewLabel_2, "flowx,cell 3 0");
+
+		//ComboBox NV
+		cmbMaNV = new JComboBox();
+
+		try {
 			AddItemMaNV(cmbMaNV);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -682,30 +682,30 @@ public class QuanLyDonHang extends JInternalFrame {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}       
+		}
 
-        input_panel.add(cmbMaNV, "cell 5 0,growx");
-        
-        
-        //
-        
-       
-        
-        JLabel lblTnNhnVin = new JLabel("Tên nhân viên:");
-        lblTnNhnVin.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblTnNhnVin, "cell 3 1");
-        
-        //
-        
-  
-        txtTenNV = new JTextField();
-        txtTenNV.setEnabled(false);
-        txtTenNV.enable(false);
-        input_panel.add(txtTenNV, "cell 5 1,growx");
-        txtTenNV.setColumns(10);
-        
-        //Lấy giá trị txt từ cmbNV
-        try {
+		input_panel.add(cmbMaNV, "cell 5 0,growx");
+
+
+		//
+
+
+
+		JLabel lblTnNhnVin = new JLabel("Tên nhân viên:");
+		lblTnNhnVin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblTnNhnVin, "cell 3 1");
+
+		//
+
+
+		txtTenNV = new JTextField();
+		txtTenNV.setEnabled(false);
+		txtTenNV.enable(false);
+		input_panel.add(txtTenNV, "cell 5 1,growx");
+		txtTenNV.setColumns(10);
+
+		//Lấy giá trị txt từ cmbNV
+		try {
 			LoadTenNV(cmbMaNV);
 		} catch (ClassNotFoundException e2) {
 			// TODO Auto-generated catch block
@@ -714,22 +714,22 @@ public class QuanLyDonHang extends JInternalFrame {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-        
-        //Event cmbMaNV
-        cmbMaNV.addItemListener(new ItemListener() {	
+
+		//Event cmbMaNV
+		cmbMaNV.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				
+
 				JComboBox<String> cmb = (JComboBox<String>) e.getSource();
-				
+
 				String maNV = String.valueOf(cmb.getSelectedItem());
 				try {
 					Connection conn = ConnectionUtils.getConnection();
 					String sql = "Select fullname  from Account where username = ?";
-					
+
 					PreparedStatement pstm = conn.prepareStatement(sql);
-					
-				
+
+
 					pstm.setString(1, maNV);
 
 					ResultSet rs = pstm.executeQuery();
@@ -743,81 +743,81 @@ public class QuanLyDonHang extends JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-			
-				
+
+
+
 			}
 		});
-        //
-        
-                       
-        JLabel lblNewLabel_4 = new JLabel("Tổng tiền:");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
-        input_panel.add(lblNewLabel_4, "cell 0 4,alignx left,aligny center");
+		//
 
-        txtTotalCost = new JTextField();
-        txtTotalCost.setEnabled(false);
-        txtTotalCost.setFont(new Font("Tahoma", Font.BOLD, 16));
-        txtTotalCost.setColumns(10);
-        txtTotalCost.setText("0");
-        txtTotalCost.enable(false);
-        input_panel.add(txtTotalCost, "cell 1 4,growx,aligny top");
 
-     
+		JLabel lblNewLabel_4 = new JLabel("Tổng tiền:");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
+		input_panel.add(lblNewLabel_4, "cell 0 4,alignx left,aligny center");
 
-        search_panel = new JPanel();
-        getContentPane().add(search_panel, "cell 0 1,grow");
-        search_panel.setLayout(new MigLayout("", "[grow][][]", "[25px]"));
+		txtTotalCost = new JTextField();
+		txtTotalCost.setEnabled(false);
+		txtTotalCost.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtTotalCost.setColumns(10);
+		txtTotalCost.setText("0");
+		txtTotalCost.enable(false);
+		input_panel.add(txtTotalCost, "cell 1 4,growx,aligny top");
 
-        txtSearch = new JTextField("Nhập mã đơn hàng cần tìm kiếm");
-        txtSearch.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (txtSearch.getText().equals("Nhập mã đơn hàng cần tìm kiếm"))
-                    txtSearch.setText("");
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (txtSearch.getText().isBlank())
-                    txtSearch.setText("Nhập mã đơn hàng cần tìm kiếm");
-            }
-        });
-        txtSearch.setFont(new Font("Tahoma", Font.BOLD, 16));
-        txtSearch.setColumns(100);
-        search_panel.add(txtSearch, "cell 0 0,alignx center,aligny center");
-        
-        //Btn Tìm
-        btnTim = new JButton("Tìm");
-        search_panel.add(btnTim, "cell 1 0");
-        btnTim.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		//Reset button
+
+
+		search_panel = new JPanel();
+		getContentPane().add(search_panel, "cell 0 1,grow");
+		search_panel.setLayout(new MigLayout("", "[grow][][]", "[25px]"));
+
+		txtSearch = new JTextField("Nhập mã đơn hàng cần tìm kiếm");
+		txtSearch.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtSearch.getText().equals("Nhập mã đơn hàng cần tìm kiếm"))
+					txtSearch.setText("");
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtSearch.getText().isBlank())
+					txtSearch.setText("Nhập mã đơn hàng cần tìm kiếm");
+			}
+		});
+		txtSearch.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtSearch.setColumns(100);
+		search_panel.add(txtSearch, "cell 0 0,alignx center,aligny center");
+
+		//Btn Tìm
+		btnTim = new JButton("Tìm");
+		search_panel.add(btnTim, "cell 1 0");
+		btnTim.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Reset button
 				btnThem.setEnabled(false);
-        		btnSua.setEnabled(true);
-        		btnXoa.setEnabled(true);
-        		btnTim.setEnabled(false);
-        		btnHuy.setEnabled(true);
-        		
-        		//Set tim,them = false
-        		
-        		tim = true;
-        		them = false;
-        		
-        		//set table
-        		setEnableAll(search_panel, false);
-        		//
-        		
-        		
-        		
-        		String maDH = txtSearch.getText();	
-				
+				btnSua.setEnabled(true);
+				btnXoa.setEnabled(true);
+				btnTim.setEnabled(false);
+				btnHuy.setEnabled(true);
+
+				//Set tim,them = false
+
+				tim = true;
+				them = false;
+
+				//set table
+				setEnableAll(search_panel, false);
+				//
+
+
+
+				String maDH = txtSearch.getText();
+
 				if(maDH.equals("") || maDH.equals("Nhập mã đơn hàng cần tìm kiếm") )
 				{
-			       
-			        JOptionPane.showMessageDialog(frame,
-			                "Vui lòng nhập mã đơn hàng",
-			                "Thông báo",
-			                JOptionPane.INFORMATION_MESSAGE);
+
+					JOptionPane.showMessageDialog(frame,
+							"Vui lòng nhập mã đơn hàng",
+							"Thông báo",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
@@ -826,58 +826,58 @@ public class QuanLyDonHang extends JInternalFrame {
 						Connection conn = ConnectionUtils.getConnection();
 						//Load don hang
 						DonHang dh = DonHangModel.getDonHangBymaDH(conn, idDH);
-						
+
 						//txtngayDH.setText(dh.getNgayDonHang().toString());
 						cmbPhone.setSelectedItem(dh.getPhoneNumGuess());
-						cmbMaNV.setSelectedItem(dh.getStaffName());						
+						cmbMaNV.setSelectedItem(dh.getStaffName());
 						txtTotalCost.setText(String.format("%.0f",dh.getCost()));
-						
-						
+
+
 						//Load chi tiet don hang
 						getChiTietDonHangToTable(conn, idDH);
 						tblDetail.setEnabled(false);
-						
+
 						// Nếu không tìm thấy
 						if (tblDetail.getRowCount() <= 0) {
 							JOptionPane.showMessageDialog(txtSearch,
 									"Không tìm thấy kết quả cho '" + maDH + "'");
 						}
-						
+
 					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-				        JOptionPane.showMessageDialog(frame,
-				                "Lỗi không tìm được",
-				                "Lỗi",
-				                JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(frame,
+								"Lỗi không tìm được",
+								"Lỗi",
+								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 				}
-        		
-        	}
-        });
-        btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
 
-       
-      //Tạo table
+			}
+		});
+		btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+
+		//Tạo table
 		createTable();
-        
-        //
-        JPanel panel = new JPanel();
-        getContentPane().add(panel, "cell 0 3,grow");
-        panel.setLayout(new MigLayout("", "[79px][][][63px][63px][63px][63px][]", "[29px]"));
-        
-        //Btn thêm
-        btnThem = new JButton("Thêm");
-        btnThem.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {               
-                them = true;
-                tim = false;
+
+		//
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, "cell 0 3,grow");
+		panel.setLayout(new MigLayout("", "[79px][][][63px][63px][63px][63px][]", "[29px]"));
+
+		//Btn thêm
+		btnThem = new JButton("Thêm");
+		btnThem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				them = true;
+				tim = false;
 				// Bật input_panel và reset all input text
 				setEnableAll(input_panel, true);
-			//	resetInputText();
+				//	resetInputText();
 
 				// Bật nút Hủy, Lưu
 				btnHuy.setEnabled(true);
@@ -891,311 +891,303 @@ public class QuanLyDonHang extends JInternalFrame {
 				btnTim.setEnabled(false);
 				setEnableAll(search_panel, false);
 				tblDetail.setEnabled(true);
-        		
+
+			}
+
+		});
+
+		btnThem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		panel.add(btnThem, "cell 0 0,alignx left,aligny top");
+
+
+		btnSua = new JButton("Sửa");
+		btnSua.setEnabled(false);
+		btnSua.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				them = false;
+				tim = true;
+				// Bật input_panel và reset all input text
+				setEnableAll(input_panel, true);
+				resetInputText();
+
+				// Bật nút Hủy, Lưu
+				btnHuy.setEnabled(true);
+				btnLuu.setEnabled(true);
+
+				// Tắt nút Sửa, Xóa, Thêm, search panel, table
+				btnSua.setEnabled(false);
+				btnXoa.setEnabled(true);
+				btnThem.setEnabled(false);
+				setEnableAll(search_panel, false);
+				tblDetail.setEnabled(true);
+
+				//Thêm 1 hàng mới
+				Object[] data = {tblDetail.getRowCount() +1 ,"","",0,0,""};
+				model.addRow(data);
+
+			}
+		});
+
+
+		btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
+		panel.add(btnSua, "cell 1 0,alignx left,aligny top");
+
+		btnXoa = new JButton("Xóa");
+		btnXoa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				//Xóa hết đơn hàng
+				if(them == true && tim == true) {
+					//Xóa hết đơn hàng
+					try {
+						Connection conn = ConnectionUtils.getConnection();
+
+						String maDH = txtSearch.getText();
+						if(maDH.equals("") || maDH.equals("Nhập mã đơn hàng cần tìm kiếm") )
+						{
+
+							JOptionPane.showMessageDialog(frame,
+									"Vui lòng nhập số đơn hàng",
+									"Thông báo",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							int result = JOptionPane.showConfirmDialog(frame,
+									"Bạn có chắc muốn xóa đơn này",
+									"Xác nhận",
+									JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE);
+							if(result == JOptionPane.YES_OPTION){
+								int idDH = Integer.parseInt(maDH);
+								ChiTietDonHangModel.deleteChiTietDonHangByIdOrder(conn, idDH);
+								DonHangModel.deleteDonHang(conn, idDH);
+
+								JOptionPane.showMessageDialog(frame,
+										"Xóa thành công",
+										"Thông báo",
+										JOptionPane.INFORMATION_MESSAGE);
+							}
+
+						}
+
+					}catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame,
+								"Lỗi không xóa được",
+								"Lỗi",
+								JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
+
+					//Xóa table Tạo ScrollPane
+					getContentPane().remove(scrollPane);
+					createTable();
+
+					//Reset text
+					resetInputText();
 				}
 
-        });
-        
-        btnThem.setFont(new Font("Tahoma", Font.BOLD, 16));
-        panel.add(btnThem, "cell 0 0,alignx left,aligny top");
-        
+				//Xóa 1 dòng
+				else if((them == true && tim == false) ||(them == false && tim == true) )
+				{
+					//Xóa 1 dòng trong table
+					rowtable = tblDetail.getSelectedRow();
+					model.removeRow(rowtable);
 
-        btnSua = new JButton("Sửa");
-        btnSua.setEnabled(false);
-        btnSua.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		 them = false;
-                 tim = true;
- 				// Bật input_panel và reset all input text
- 				setEnableAll(input_panel, true);
- 				resetInputText();
+					//Reset STT và tổng tiền
+					float sum = 0;
 
- 				// Bật nút Hủy, Lưu
- 				btnHuy.setEnabled(true);
- 				btnLuu.setEnabled(true);
+					for(int i=0;i< tblDetail.getRowCount();i++)
+					{
+						tblDetail.setValueAt(i+1, i, 0);
+					}
 
- 				// Tắt nút Sửa, Xóa, Thêm, search panel, table
- 				btnSua.setEnabled(false);
- 				btnXoa.setEnabled(true);
- 				btnThem.setEnabled(false);
- 				setEnableAll(search_panel, false);
- 				tblDetail.setEnabled(true);
-        		
- 				//Thêm 1 hàng mới
- 				Object[] data = {tblDetail.getRowCount() +1 ,"","",0,0,""};			
- 		  		model.addRow(data);
+					//Do có hàng cuối trống
+					for(int i=0;i< tblDetail.getRowCount()-1;i++)
+					{
+						sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
+					}
 
-              }
-        });
-        
-        
-        btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
-        panel.add(btnSua, "cell 1 0,alignx left,aligny top");
+					sum -= sum * discount /100;
+					txtTotalCost.setText(String.format("%.0f", sum));
 
-        btnXoa = new JButton("Xóa");
-        btnXoa.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		//Xóa hết đơn hàng
-        		if(them == true && tim == true) {
-        			//Xóa hết đơn hàng    
+
+				}
+
+			}
+		});
+		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		panel.add(btnXoa, "cell 2 0,alignx left,aligny top");
+
+		btnLuu = new JButton("Lưu");
+		btnLuu.setEnabled(false);
+		btnLuu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(them == true) {
+					// Đơn hàng
+					DonHang dHang = new DonHang();
+
+					dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
+					dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
+					dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
+
 					try {
+						if(tblDetail.getRowCount()>1) {
 							Connection conn = ConnectionUtils.getConnection();
-							
-							String maDH = txtSearch.getText();
-							if(maDH.equals("") || maDH.equals("Nhập mã đơn hàng cần tìm kiếm") )
+							//Thêm đơn hàng và Lấy MaDH vừa mới thêm
+							int idDH = DonHangModel.insertDonHang(conn, dHang);
+
+							//Chi tiết đơn  hàng
+							ChiTietDonHang ctDH = new ChiTietDonHang();
+
+							//
+							ctDH.setIdOrder(idDH);
+							for(int i=0;i< tblDetail.getRowCount()-1;i++)
 							{
-						        
-						        JOptionPane.showMessageDialog(frame,
-						                "Vui lòng nhập số đơn hàng",
-						                "Thông báo",
-						                JOptionPane.INFORMATION_MESSAGE);
+								ctDH.setIdProduct(Integer.parseInt(tblDetail.getValueAt(i, 1).toString()));
+								ctDH.setQuantity(Integer.parseInt( tblDetail.getValueAt(i, 4).toString()));
+								ctDH.setCost(Integer.parseInt(tblDetail.getValueAt(i, 5).toString()));
+								//Thêm chi tiết đơn hàng
+								ChiTietDonHangModel.insertChiTietDonHang(conn, ctDH);
 							}
-							else
-							{
-								int result = JOptionPane.showConfirmDialog(frame,
-				                        "Bạn có chắc muốn xóa đơn này",
-				                        "Xác nhận",
-				                        JOptionPane.YES_NO_OPTION,
-				                        JOptionPane.QUESTION_MESSAGE);
-								if(result == JOptionPane.YES_OPTION){ 
-									int idDH = Integer.parseInt(maDH);
-									ChiTietDonHangModel.deleteChiTietDonHangByIdOrder(conn, idDH);
-									DonHangModel.deleteDonHang(conn, idDH);
-							        
-							        JOptionPane.showMessageDialog(frame,
-							                "Xóa thành công",
-							                "Thông báo",
-							                JOptionPane.INFORMATION_MESSAGE);	
+
+
+
+							JOptionPane.showMessageDialog(frame,
+									"Thêm thành công",
+									"Thông báo",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(frame,
+									"Cần thêm sản phẩm vào đơn hàng",
+									"Lỗi",
+									JOptionPane.ERROR_MESSAGE);
+						}
+
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(frame,
+								"Lỗi không thêm được",
+								"Lỗi",
+								JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				}
+				//Sửa
+				else {
+
+					int result = JOptionPane.showConfirmDialog(frame,
+							"Bạn có chắc muốn sửa đơn này",
+							"Xác nhận",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+					if(result == JOptionPane.YES_OPTION){
+						//Lấy mã đơn hàng
+						int maDH = Integer.parseInt( txtSearch.getText());
+						try {
+							Connection conn = ConnectionUtils.getConnection();
+
+							//Xóa đơn hàng và chi tiết đơn hàng vs mã maDH
+							ChiTietDonHangModel.deleteChiTietDonHangByIdOrder(conn, maDH);
+
+							//Chi tiết đơn  hàng
+							ChiTietDonHang ctDH = new ChiTietDonHang();
+
+							if(tblDetail.getRowCount()>=1) {
+
+								ctDH.setIdOrder(maDH);
+								for(int i=0;i< tblDetail.getRowCount()-1;i++)
+								{
+									ctDH.setIdProduct(Integer.parseInt(tblDetail.getValueAt(i, 1).toString()));
+									ctDH.setQuantity(Integer.parseInt( tblDetail.getValueAt(i, 4).toString()));
+									ctDH.setCost(Float.parseFloat(tblDetail.getValueAt(i, 5).toString()));
+									//Thêm chi tiết đơn hàng
+									ChiTietDonHangModel.insertChiTietDonHang(conn, ctDH);
 								}
-								
-							} 
-							
-						}catch (ClassNotFoundException e1) {
+
+								JOptionPane.showMessageDialog(frame,
+										"Chỉnh sửa thành công",
+										"Thông báo",
+										JOptionPane.INFORMATION_MESSAGE);
+							}
+							else {
+								JOptionPane.showMessageDialog(frame,
+										"Cần thêm sản phẩm vào đơn hàng",
+										"Lỗi",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+							//Cập nhật lại đơn hàng
+
+							DonHang dHang = new DonHang();
+
+							dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
+							dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
+							dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
+
+							DonHangModel.updateDonHang(conn, dHang, maDH);
+
+
+						} catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
-							JFrame frame = new JFrame();
-					        JOptionPane.showMessageDialog(frame,
-					                "Lỗi không xóa được",
-					                "Lỗi",
-					                JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(frame,
+									"Lỗi không sửa được",
+									"Lỗi",
+									JOptionPane.ERROR_MESSAGE);
+							e1.printStackTrace();
 							e1.printStackTrace();
 						}
+					}
+				}
 
-		        //Xóa table Tạo ScrollPane
-		        getContentPane().remove(scrollPane);
+				//
+				getContentPane().remove(scrollPane);
 				createTable();
-				
-				//Reset text
-				resetInputText();		
-        	}
-        
-        		//Xóa 1 dòng
-        		else if((them == true && tim == false) ||(them == false && tim == true) )
-        		{
-        			//Xóa 1 dòng trong table
-        			//Lỗi lần đầu tiên là hàng đầu
-        			rowtable = tblDetail.getSelectedRow();
-    	  			model.removeRow(rowtable);
-    	  			//lblDiscount.setText(String.valueOf(rowtable));
-    	  			
-    	  			//Reset STT và tổng tiền
-    	  			float sum = 0;
-    	  			
-    	  			for(int i=0;i< tblDetail.getRowCount();i++)
-					{
-    	  				tblDetail.setValueAt(i+1, i, 0);
-					}
-    	  			
-    	  			//Do có hàng cuối trống
-    	  			for(int i=0;i< tblDetail.getRowCount()-1;i++)
-					{
-    	  				sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
-					}
-    	  			
-    	  			sum -= sum * discount /100;
-    	  			txtTotalCost.setText(String.format("%.0f", sum));
-    	  		
-    	  			
-        		}
 
-        	}
-        });
-        btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
-        panel.add(btnXoa, "cell 2 0,alignx left,aligny top");
+			}
+		});
+		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		panel.add(btnLuu, "cell 3 0,alignx left,aligny top");
 
-        btnLuu = new JButton("Lưu");
-        btnLuu.setEnabled(false);
-        btnLuu.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		if(them == true) {
-        			// Đơn hàng
-    				DonHang dHang = new DonHang();
-    				
-    				dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
-    				dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
-    				dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
-    				
-    				try {
-    					if(tblDetail.getRowCount()>1) {
-    						Connection conn = ConnectionUtils.getConnection();
-    						//Thêm đơn hàng và Lấy MaDH vừa mới thêm
-    						int idDH = DonHangModel.insertDonHang(conn, dHang);
-    						
-    						//Chi tiết đơn  hàng
-    						ChiTietDonHang ctDH = new ChiTietDonHang();
-    						
-    						//
-    						ctDH.setIdOrder(idDH);
-    						for(int i=0;i< tblDetail.getRowCount()-1;i++)
-    						{
-    							ctDH.setIdProduct(Integer.parseInt(tblDetail.getValueAt(i, 1).toString()));
-    							ctDH.setQuantity(Integer.parseInt( tblDetail.getValueAt(i, 4).toString()));
-    							ctDH.setCost(Integer.parseInt(tblDetail.getValueAt(i, 5).toString()));
-    							//Thêm chi tiết đơn hàng
-    							ChiTietDonHangModel.insertChiTietDonHang(conn, ctDH);
-    						}
-    						
-    						
-    				        
-    				        JOptionPane.showMessageDialog(frame,
-    				                "Thêm thành công",
-    				                "Thông báo",
-    				                JOptionPane.INFORMATION_MESSAGE);
-    					}
-    					else {
-    						// TODO Auto-generated catch block
-    				        JOptionPane.showMessageDialog(frame,
-    				                "Cần thêm sản phẩm vào đơn hàng",
-    				                "Lỗi",
-    				                JOptionPane.ERROR_MESSAGE);
-    					}
-    		
-    					} catch (SQLException e1) {
-    								// TODO Auto-generated catch block
-    						        JOptionPane.showMessageDialog(frame,
-    						                "Lỗi không thêm được",
-    						                "Lỗi",
-    						                JOptionPane.ERROR_MESSAGE);
-    								e1.printStackTrace();
-    					} catch (ClassNotFoundException e1) {
-    								// TODO Auto-generated catch block
-    								e1.printStackTrace();
-    					}
-    				
-        		}
-        		//Sửa
-        		else {
 
-    				int result = JOptionPane.showConfirmDialog(frame,
-                            "Bạn có chắc muốn sửa đơn này",
-                            "Xác nhận",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE);
-                    if(result == JOptionPane.YES_OPTION){
-                    	//Lấy mã đơn hàng
-                    	int maDH = Integer.parseInt( txtSearch.getText());
-                    	try {
-                    		Connection conn = ConnectionUtils.getConnection();
-                    		
-                    		//Xóa đơn hàng và chi tiết đơn hàng vs mã maDH
-                    		ChiTietDonHangModel.deleteChiTietDonHangByIdOrder(conn, maDH);
-                    		//DonHangModel.deleteDonHang(conn, maDH);
-    						
-    					
-    						
-    							//Thêm đơn hàng và Lấy MaDH vừa mới thêm
-    					//		int idDH = DonHangModel.insertDonHang(conn, dHang);
-    							
-    							//Chi tiết đơn  hàng
-    							ChiTietDonHang ctDH = new ChiTietDonHang();
-    							
-    							if(tblDetail.getRowCount()>=1) {
-    									
-    									ctDH.setIdOrder(maDH);
-    									for(int i=0;i< tblDetail.getRowCount()-1;i++)
-    									{
-    										ctDH.setIdProduct(Integer.parseInt(tblDetail.getValueAt(i, 1).toString()));
-    										ctDH.setQuantity(Integer.parseInt( tblDetail.getValueAt(i, 4).toString()));
-    										ctDH.setCost(Float.parseFloat(tblDetail.getValueAt(i, 5).toString()));
-    										//Thêm chi tiết đơn hàng
-    										ChiTietDonHangModel.insertChiTietDonHang(conn, ctDH);
-    									}
-    						        
-    						        JOptionPane.showMessageDialog(frame,
-    						                "Chỉnh sửa thành công",
-    						                "Thông báo",
-    						                JOptionPane.INFORMATION_MESSAGE);
-    							}
-    							else {
-    							        JOptionPane.showMessageDialog(frame,
-    							                "Cần thêm sản phẩm vào đơn hàng",
-    							                "Lỗi",
-    							                JOptionPane.ERROR_MESSAGE);
-    							}
-    							
-    							//Cập nhật lại
-        						
-        						DonHang dHang = new DonHang();
-        						
-        						dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
-        						dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
-        						dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
-        						
-        						DonHangModel.updateDonHang(conn, dHang, maDH);
-    							
-    					
-    					} catch (ClassNotFoundException e1) {
-    						// TODO Auto-generated catch block
-    						e1.printStackTrace();
-    					} catch (SQLException e1) {
-    						// TODO Auto-generated catch block
-    					        JOptionPane.showMessageDialog(frame,
-    					                "Lỗi không sửa được",
-    					                "Lỗi",
-    					                JOptionPane.ERROR_MESSAGE);
-    							e1.printStackTrace();
-    						e1.printStackTrace();
-    					}
-                    }
-        		}
-        		
-        		//
-        		getContentPane().remove(scrollPane);
-        		createTable();
-        		
-        	}
-        });
-        btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
-        panel.add(btnLuu, "cell 3 0,alignx left,aligny top");
-                
+		//Btn Hủy
+		btnHuy = new JButton("Hủy");
+		btnHuy.setEnabled(false);
+		btnHuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(scrollPane);
+				createTable();
 
-        //Btn Hủy
-        btnHuy = new JButton("Hủy");
-        btnHuy.setEnabled(false);
-        btnHuy.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		getContentPane().remove(scrollPane);
-        		createTable();
-        		
-        	}
-        });
-        
-        btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
-        panel.add(btnHuy, "cell 4 0,alignx left,aligny top");
-        
+			}
+		});
 
-    }
+		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		panel.add(btnHuy, "cell 4 0,alignx left,aligny top");
 
-    // Tắt title bar của JInternalFrame
-    @Override
-    public void setUI(InternalFrameUI ui) {
-        super.setUI(ui);
-        BasicInternalFrameUI frameUI = (BasicInternalFrameUI) getUI();
-        if (frameUI != null)
-            frameUI.setNorthPane(null);
-    }
+
+	}
+
+	// Tắt title bar của JInternalFrame
+	@Override
+	public void setUI(InternalFrameUI ui) {
+		super.setUI(ui);
+		BasicInternalFrameUI frameUI = (BasicInternalFrameUI) getUI();
+		if (frameUI != null)
+			frameUI.setNorthPane(null);
+	}
 }
