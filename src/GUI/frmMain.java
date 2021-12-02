@@ -64,9 +64,7 @@ public class frmMain extends JFrame {
 	 */
 	public frmMain(Account curUser) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			UnsupportedLookAndFeelException, IOException, SQLException {
-		ImageIcon imgSanPham = new ImageIcon("resources/icon/shop.png");
-		Image img = imgSanPham.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-		setIconImage(img);
+		setIconImage(getIcon("resources/icon/shop.png", 250, 250).getImage());
 		setTitle("QUẢN LÝ CỬA HÀNG BÁN GIÀY");
 		setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		UIManager.setLookAndFeel(new FlatLightLaf());
