@@ -79,10 +79,8 @@ public class SanPhamModel {
 	    public static boolean delete_SanPham(Connection conn, String id) throws SQLException {
 	    	PreparedStatement pstm = conn.prepareStatement("delete from Product where id = ?");
 	    	pstm.setString(1, id);
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+            return pstm.executeUpdate() > 0;
+        }
 	    
 	    // find SanPham by id
 	    public static SanPham find_SanPham(Connection conn, int id) throws SQLException {
@@ -119,10 +117,8 @@ public class SanPhamModel {
 	    	pstm.setInt(6, SP.getQuantity());
 	    	pstm.setDouble(7, SP.getCost());
 	    	pstm.setDate(8, SP.getSaleDate());
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+            return pstm.executeUpdate() > 0;
+        }
 	    
 	    // update info SanPham to DB
 	    public static boolean update_SanPham(Connection conn, SanPham SP) throws SQLException {
@@ -139,10 +135,8 @@ public class SanPhamModel {
 	    	pstm.setString(4, SP.getDescribe());
 	    	pstm.setDouble(5, SP.getCost());
 	    	pstm.setInt(6, SP.getId());
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+            return pstm.executeUpdate() > 0;
+        }
 	    
 	    // update add SanPham to DB
 	    public static boolean update_SanPham(Connection conn, int id, int quantity) throws SQLException {
@@ -151,11 +145,9 @@ public class SanPhamModel {
 	    			+ "where id = ?");
 	    	pstm.setInt(1, quantity);
 	    	pstm.setInt(2, id);
-	    	
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+
+            return pstm.executeUpdate() > 0;
+        }
 
 	    // load SanPham from DB to Obj[][]
 	    public static Object[][] load_SanPham_to_Obj(Connection conn) throws SQLException {

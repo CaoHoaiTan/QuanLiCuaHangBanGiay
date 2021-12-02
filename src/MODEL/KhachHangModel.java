@@ -56,9 +56,7 @@ public class KhachHangModel {
     public static boolean delete_KhachHang(Connection conn, String phoneNumber) throws SQLException {
     	PreparedStatement pstm = conn.prepareStatement("delete from Guess where phoneNumber = ?");
     	pstm.setString(1, phoneNumber);
-    	if (pstm.executeUpdate() > 0)
-    		return true;
-    	return false;
+        return pstm.executeUpdate() > 0;
     }
     
     // insert KhachHang to DB
@@ -70,9 +68,7 @@ public class KhachHangModel {
     	pstm.setString(3, KH.getSex());
     	pstm.setString(4, KH.getAddress());
     	pstm.setString(5, KH.getEmail());
-    	if (pstm.executeUpdate() > 0)
-    		return true;
-    	return false;
+        return pstm.executeUpdate() > 0;
     }
     
     // update KhachHang to DB
@@ -88,9 +84,7 @@ public class KhachHangModel {
     	pstm.setString(3, KH.getAddress());
     	pstm.setString(4, KH.getEmail());
     	pstm.setString(5, KH.getPhoneNumber());
-    	if (pstm.executeUpdate() > 0)
-    		return true;
-    	return false;
+        return pstm.executeUpdate() > 0;
     }
     
 

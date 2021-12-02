@@ -38,15 +38,15 @@ public class NhapHangCu extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtID;
-	private JTextField txtQuantity_new;
-	private JTextArea txtQuantity;
-	private JTextArea txtCost;
+	private final JTextField txtID;
+	private final JTextField txtQuantity_new;
+	private final JTextArea txtQuantity;
+	private final JTextArea txtCost;
 	private List<ThuongHieu> listTH;
-	private JTextArea txtName = new JTextArea();
-	private JTextArea txtDescribe = new JTextArea();
+	private final JTextArea txtName = new JTextArea();
+	private final JTextArea txtDescribe = new JTextArea();
 	private JTextArea txtBrand = new JTextArea();
-	private JLabel lblImage = new JLabel("[IMG]");
+	private final JLabel lblImage = new JLabel("[IMG]");
 
 	/**
 	 * Launch the application.

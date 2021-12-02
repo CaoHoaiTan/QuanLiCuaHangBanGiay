@@ -51,22 +51,22 @@ public class QuanLyDonHang extends JInternalFrame {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtTenKH;
-	private JTextField txtAddress;
-	private JTextField txtTotalCost;
-	private JTextField txtSearch;
-	private JComboBox<String> cmbPhone;
+	private final JTextField txtTenKH;
+	private final JTextField txtAddress;
+	private final JTextField txtTotalCost;
+	private final JTextField txtSearch;
+	private final JComboBox<String> cmbPhone;
 	private JTable tblDetail;
 	private JScrollPane scrollPane = new JScrollPane();
-	private JTextField txtTenNV;
+	private final JTextField txtTenNV;
 	private JButton btnHuy = new JButton("Hủy");
 	private JButton btnLuu = new JButton("Lưu");
 	private JButton btnXoa = new JButton("Xóa");
 	private JButton btnSua = new JButton("Sửa");
 	private JButton btnThem = new JButton("Thêm");
-	private JButton btnTim;
-	private JPanel search_panel;
-	private JPanel input_panel;
+	private final JButton btnTim;
+	private final JPanel search_panel;
+	private final JPanel input_panel;
 	private boolean them = true;
 	private boolean tim = true;
 	private DefaultTableModel model;
@@ -74,9 +74,9 @@ public class QuanLyDonHang extends JInternalFrame {
 	private int discount = 0;
 
 	private int rowtable=0;
-	private JLabel lblDiscount;
-	private JLabel lblTotalcost;
-	private JTextField txtMaNV;
+	private final JLabel lblDiscount;
+	private final JLabel lblTotalcost;
+	private final JTextField txtMaNV;
 
 	JComboBox<String> addcusToTable(JComboBox<String> cmbx)
 	{
@@ -291,7 +291,7 @@ public class QuanLyDonHang extends JInternalFrame {
 				txtTenKH.setText(rs.getString("fullname"));
 				txtAddress.setText(rs.getString("address"));
 				discount = rs.getInt("discount");
-				lblDiscount.setText("Ưu đãi: " + String.valueOf(rs.getInt("discount")) + "%");
+				lblDiscount.setText("Ưu đãi: " + rs.getInt("discount") + "%");
 				lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%.0f", rs.getFloat("totalCost"))+ " vnđ");
 			}
 		} catch (ClassNotFoundException e1) {
@@ -572,7 +572,7 @@ public class QuanLyDonHang extends JInternalFrame {
 						txtTenKH.setText(rs.getString("fullname"));
 						txtAddress.setText(rs.getString("address"));
 						discount = rs.getInt("discount");
-						lblDiscount.setText("Ưu đãi: " + String.valueOf(rs.getInt("discount")) + "%");
+						lblDiscount.setText("Ưu đãi: " + rs.getInt("discount") + "%");
 						lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%.0f", rs.getFloat("totalCost"))+ " vnđ");
 					}
 

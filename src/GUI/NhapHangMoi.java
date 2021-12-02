@@ -42,19 +42,19 @@ public class NhapHangMoi extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtQuantity;
-	private JTextField txtCost;
-	private JComboBox<ThuongHieu> cmbBrand = new JComboBox<ThuongHieu>();
+	private final JTextField txtQuantity;
+	private final JTextField txtCost;
+	private final JComboBox<ThuongHieu> cmbBrand = new JComboBox<ThuongHieu>();
 	private List<ThuongHieu> listTH;
-	private JTextField txtID;
-	private JPanel input_panel;
-	private JTextField txtDay;
-	private JTextField txtImage;
-	private JTextField txtMonth;
-	private JTextField txtYear;
-	private JTextArea txtName = new JTextArea();
-	private JTextArea txtDescribe = new JTextArea();
-	private JLabel lblImage = new JLabel("[IMG]");
+	private final JTextField txtID;
+	private final JPanel input_panel;
+	private final JTextField txtDay;
+	private final JTextField txtImage;
+	private final JTextField txtMonth;
+	private final JTextField txtYear;
+	private final JTextArea txtName = new JTextArea();
+	private final JTextArea txtDescribe = new JTextArea();
+	private final JLabel lblImage = new JLabel("[IMG]");
 
 	/**
 	 * Launch the application.

@@ -48,10 +48,8 @@ public class ThuongHieuModel {
 	    public static boolean delete_ThuongHieu(Connection conn, String MaTH) throws SQLException {
 	    	PreparedStatement pstm = conn.prepareStatement("delete from Brand where id = ?");
 	    	pstm.setString(1, MaTH);
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+            return pstm.executeUpdate() > 0;
+        }
 
 	 // insert ThuongHieu to DB
 	    public static boolean insert_ThuongHieu(Connection conn, ThuongHieu TH) throws SQLException {
@@ -59,11 +57,9 @@ public class ThuongHieuModel {
 	    			+ "	values(?, ?, ?)");
 	    	pstm.setString(1, TH.getName());
 	    	pstm.setString(2, TH.getEmail());
-	    	pstm.setString(3, TH.getLogo());	    	
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+	    	pstm.setString(3, TH.getLogo());
+            return pstm.executeUpdate() > 0;
+        }
 	    
 	    // update ThuongHieu to DB
 	    public static boolean update_ThuongHieu(Connection conn, ThuongHieu TH) throws SQLException {
@@ -76,10 +72,8 @@ public class ThuongHieuModel {
 	    	pstm.setString(2, TH.getEmail());
 	    	pstm.setString(3, TH.getLogo());
 	    	pstm.setInt(4, TH.getId());
-	    	if (pstm.executeUpdate() > 0)
-	    		return true;
-	    	return false;
-	    }
+            return pstm.executeUpdate() > 0;
+        }
 	    
 	    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 	    	//System.out.println(load_ThuongHieu(ConnectionUtils.getConnection()));
