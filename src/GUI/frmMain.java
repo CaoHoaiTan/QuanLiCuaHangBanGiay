@@ -23,10 +23,14 @@ import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmMain extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +54,7 @@ public class frmMain extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * 
+	 *
 	 * @throws UnsupportedLookAndFeelException
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
@@ -76,11 +80,11 @@ public class frmMain extends JFrame {
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane);
-		
+
 		JInternalFrame qlKhachHang = new QuanLyKhachHang();
 		tabbedPane.addTab("Khách hàng", null, qlKhachHang, null);
 		tabbedPane.setBackgroundAt(0, new Color(255, 255, 255));
-		
+
 		JInternalFrame qlHangHoa = new QuanLyHangHoa();
 		qlHangHoa.getContentPane().setBackground(new Color(255, 255, 255));
 		tabbedPane.addTab("Hàng hóa", null, qlHangHoa, null);
@@ -94,7 +98,7 @@ public class frmMain extends JFrame {
 		thongKe.getContentPane().setBackground(new Color(255, 255, 255));
 		tabbedPane.addTab("Thống kê", null, thongKe, null);
 		tabbedPane.setBackgroundAt(3, new Color(255, 255, 255));
-		
+
 		if (curUser.isAdmin()) {
 			JInternalFrame qlThuongHieu = new QuanLyThuongHieu();
 			tabbedPane.addTab("Thương hiệu", null, qlThuongHieu, null);
@@ -104,20 +108,43 @@ public class frmMain extends JFrame {
 			tabbedPane.addTab("Nhân viên", null, qlNhanVien, null);
 			tabbedPane.setBackgroundAt(5, new Color(255, 255, 255));
 		}
-		
+
 		tabbedPane.setEnabledAt(0, true);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		contentPane.add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new MigLayout("", "[grow][]", "[grow]"));
 
 		JLabel lblUserInfo = new JLabel("Tài khoản đang sử dụng: " + curUser.getUsername() + " - Quyền: "
 				+ (curUser.isAdmin() ? "Admin" : "Nhân viên"));
-		lblUserInfo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblUserInfo.setBackground(new Color(255, 255, 255));
 		lblUserInfo.setHorizontalAlignment(SwingConstants.RIGHT);
-		contentPane.add(lblUserInfo, BorderLayout.SOUTH);
+		lblUserInfo.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		panel.add(lblUserInfo, "cell 0 0,alignx left,aligny top");
+
+		JButton btnDangXuat = new JButton("Đăng xuất");
+		btnDangXuat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DangNhap frm = new DangNhap();
+					frm.setVisible(true);
+					dispose();
+				} catch (UnsupportedLookAndFeelException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnDangXuat.setIcon(getIcon("resources/icon/exit.png", 30, 30));
+		btnDangXuat.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		panel.add(btnDangXuat, "cell 1 0");
 	}
-	
+
 	// Get and resize Image to ImageIcon
 	public static ImageIcon getIcon(String path, int width, int height) {
 		ImageIcon icon = new ImageIcon(path);
-		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		Image img = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(img);
 		return icon;
 	}
