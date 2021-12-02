@@ -35,9 +35,9 @@ public class DangNhap extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtUsername;
-	private JPasswordField txtPassword;
+	private final JPanel contentPane;
+	private final JTextField txtUsername;
+	private final JPasswordField txtPassword;
 
 	/**
 	 * Create the frame.

@@ -58,29 +58,29 @@ public class QuanLyHang extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextArea txtName;
-	private JTextField txtImage;
-	private JTextArea txtDescribe;
-	private JTextField txtCost;
-	private JTable table;
-	private JPanel button_panel = new JPanel();
-	private JLabel lblQuantity = new JLabel("Còn lại: 0");
-	private JLabel lblSaleDate = new JLabel("Ngày bán: dd/mm/yyyy");
-	private JPanel right_panel = new JPanel();
-	private JComboBox<ThuongHieu> cmbBrand = new JComboBox<ThuongHieu>();
-	private JPanel input_panel = new JPanel();
-	private JPanel img_panel = new JPanel();
-	private JPanel left_panel = new JPanel();
-	private JButton btnHuy = new JButton("Hủy");
-	private JButton btnLuu = new JButton("Lưu");
-	private JButton btnXoa = new JButton("Xóa");
-	private JButton btnSua = new JButton("Sửa");
+	private final JTextArea txtName;
+	private final JTextField txtImage;
+	private final JTextArea txtDescribe;
+	private final JTextField txtCost;
+	private final JTable table;
+	private final JPanel button_panel = new JPanel();
+	private final JLabel lblQuantity = new JLabel("Còn lại: 0");
+	private final JLabel lblSaleDate = new JLabel("Ngày bán: dd/mm/yyyy");
+	private final JPanel right_panel = new JPanel();
+	private final JComboBox<ThuongHieu> cmbBrand = new JComboBox<ThuongHieu>();
+	private final JPanel input_panel = new JPanel();
+	private final JPanel img_panel = new JPanel();
+	private final JPanel left_panel = new JPanel();
+	private final JButton btnHuy = new JButton("Hủy");
+	private final JButton btnLuu = new JButton("Lưu");
+	private final JButton btnXoa = new JButton("Xóa");
+	private final JButton btnSua = new JButton("Sửa");
 	private final JPanel seacrh_panel = new JPanel();
 	private final JTextField txtSearch = new JTextField();
 	private final JButton btnTim = new JButton("Tìm kiếm");
-	private JLabel lblImage = new JLabel("IMG");
+	private final JLabel lblImage = new JLabel("IMG");
 	private List<ThuongHieu> listTH;
-	private JLabel lblId = new JLabel("ID:");
+	private final JLabel lblId = new JLabel("ID:");
 
 	/**
 	 * Launch the application.

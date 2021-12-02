@@ -54,26 +54,26 @@ public class QuanLyKhachHang extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtPhoneNumber;
-	private JTextField txtFullName;
-	private JTextField txtAddress;
-	private JTextField txtEmail;
-	private JTextField txtSearch;
-	private JTable table;
-	private JButton btnHuy = new JButton("Hủy");
-	private JButton btnLuu = new JButton("Lưu");
-	private JButton btnXoa = new JButton("Xóa");
-	private JButton btnSua = new JButton("Sửa");
-	private JButton btnThem = new JButton("Thêm");
-	private JPanel button_panel = new JPanel();
-	private JPanel data_panel = new JPanel();
-	private JPanel seacrh_panel = new JPanel();
-	private JPanel input_panel = new JPanel();
-	private JRadioButton rdbtnFemale = new JRadioButton("Nữ");
-	private JRadioButton rdbtnMale = new JRadioButton("Nam");
-	private JLabel lblTotalcost = new JLabel("Tổng số tiền đã mua: vnđ");
-	private JLabel lblDiscount = new JLabel("Ưu đãi 0%");
-	private JButton btnTim = new JButton("Tìm kiếm");
+	private final JTextField txtPhoneNumber;
+	private final JTextField txtFullName;
+	private final JTextField txtAddress;
+	private final JTextField txtEmail;
+	private final JTextField txtSearch;
+	private final JTable table;
+	private final JButton btnHuy = new JButton("Hủy");
+	private final JButton btnLuu = new JButton("Lưu");
+	private final JButton btnXoa = new JButton("Xóa");
+	private final JButton btnSua = new JButton("Sửa");
+	private final JButton btnThem = new JButton("Thêm");
+	private final JPanel button_panel = new JPanel();
+	private final JPanel data_panel = new JPanel();
+	private final JPanel seacrh_panel = new JPanel();
+	private final JPanel input_panel = new JPanel();
+	private final JRadioButton rdbtnFemale = new JRadioButton("Nữ");
+	private final JRadioButton rdbtnMale = new JRadioButton("Nam");
+	private final JLabel lblTotalcost = new JLabel("Tổng số tiền đã mua: vnđ");
+	private final JLabel lblDiscount = new JLabel("Ưu đãi 0%");
+	private final JButton btnTim = new JButton("Tìm kiếm");
 	private boolean isInsert;
 
 	/**

@@ -54,10 +54,8 @@ public class AccountModel {
 	public static boolean delete_NhanVien(Connection conn, String ID) throws SQLException {
 		PreparedStatement pstm = conn.prepareStatement("delete from Account where id = ?");
 		pstm.setString(1, ID);
-		if (pstm.executeUpdate() > 0)
-			return true;
-		return false;
-	}
+        return pstm.executeUpdate() > 0;
+    }
 
 	// insert NhanVien to DB
 	public static boolean insert_NhanVien(Connection conn, Account NV) throws SQLException {
@@ -73,10 +71,8 @@ public class AccountModel {
 		pstm.setString(7, NV.getSex());
 		pstm.setString(8, NV.getDateOfBirth().toString());
 		pstm.setBoolean(9, NV.isAdmin());
-		if (pstm.executeUpdate() > 0)
-			return true;
-		return false;
-	}
+        return pstm.executeUpdate() > 0;
+    }
 
 	// update NhanVien to DB
 	public static boolean update_NhanVien(Connection conn, Account NV) throws SQLException {
@@ -93,10 +89,8 @@ public class AccountModel {
 		pstm.setString(8, NV.getDateOfBirth().toString());
 		pstm.setBoolean(9, NV.isAdmin());
 		pstm.setInt(10, NV.getId());
-		if (pstm.executeUpdate() > 0)
-			return true;
-		return false;
-	}
+        return pstm.executeUpdate() > 0;
+    }
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		// System.out.println(load_Account(ConnectionUtils.getConnection()));
