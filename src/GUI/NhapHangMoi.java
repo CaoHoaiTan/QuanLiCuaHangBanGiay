@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class NhapHangMoi extends JInternalFrame {
 	/**
@@ -130,64 +131,69 @@ public class NhapHangMoi extends JInternalFrame {
 	 * @throws ClassNotFoundException
 	 */
 	public NhapHangMoi() throws ClassNotFoundException, SQLException {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setBorder(new TitledBorder(null, "NHẬP HÀNG MỚI", TitledBorder.LEADING, TitledBorder.TOP,
-				new Font("Tahoma", Font.BOLD, 16), null));
+				new Font("Segoe UI Semibold", Font.BOLD, 16), null));
 		setBounds(100, 100, 450, 700);
 		getContentPane().setLayout(new MigLayout("", "[grow][200px]", "[200px][grow][]"));
 
 		input_panel = new JPanel();
+		input_panel.setBackground(new Color(255, 255, 255));
 		input_panel.setBorder(null);
 		getContentPane().add(input_panel, "cell 0 0,grow");
 		input_panel.setLayout(new MigLayout("", "[][grow][grow][grow]", "[grow][grow][grow][grow][grow]"));
 
 		JLabel lblNewLabel_1_4_2 = new JLabel("ID mới:");
-		lblNewLabel_1_4_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_4_2.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		input_panel.add(lblNewLabel_1_4_2, "cell 0 0,alignx left,aligny center");
 
 		txtID = new JTextField();
-		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtID.setEditable(false);
 		txtID.setColumns(10);
 		input_panel.add(txtID, "cell 1 0 4 1,growx");
 
 		JLabel lblNewLabel_1_1 = new JLabel("Thương hiệu:");
 		input_panel.add(lblNewLabel_1_1, "cell 0 1");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cmbBrand.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		cmbBrand.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 
 		getContentPane().add(lblImage, "cell 1 0,alignx center,aligny center");
 
 		JPanel info_panel = new JPanel();
+		info_panel.setBackground(new Color(255, 255, 255));
 		info_panel.setBorder(null);
 		getContentPane().add(info_panel, "cell 0 1 2 1,grow");
 		info_panel.setLayout(new MigLayout("", "[grow][grow][]", "[grow][grow][]"));
 
 		JLabel lblNewLabel_1_2 = new JLabel("Tên:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_2.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		info_panel.add(lblNewLabel_1_2, "cell 0 0,aligny top");
 
 		txtName.setLineWrap(true);
-		txtName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		info_panel.add(txtName, "cell 1 0 2 1,grow");
 
 		JLabel lblNewLabel_1_3 = new JLabel("Mô tả:");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_3.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		info_panel.add(lblNewLabel_1_3, "cell 0 1,aligny top");
 
 		txtDescribe.setLineWrap(true);
-		txtDescribe.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtDescribe.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		info_panel.add(txtDescribe, "cell 1 1 2 1,grow");
 
 		JLabel lblNewLabel_1_4_1_1 = new JLabel("Hình:");
-		lblNewLabel_1_4_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_4_1_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		info_panel.add(lblNewLabel_1_4_1_1, "cell 0 2,alignx left");
 
 		txtImage = new JTextField();
-		txtImage.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtImage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtImage.setColumns(10);
 		info_panel.add(txtImage, "cell 1 2,growx");
 
 		JButton btnXem = new JButton("Xem");
+		btnXem.setBackground(new Color(255, 255, 255));
+		btnXem.setIcon(getIcon("resources/icon/picture.png", 30, 30));
 		btnXem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -202,60 +208,64 @@ public class NhapHangMoi extends JInternalFrame {
 				}
 			}
 		});
-		btnXem.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnXem.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		info_panel.add(btnXem, "cell 2 2");
 
 		JPanel button_panel = new JPanel();
+		button_panel.setBackground(new Color(255, 255, 255));
 		getContentPane().add(button_panel, "cell 0 2 2 1,grow");
 		button_panel.setLayout(new MigLayout("", "[grow][grow]", "[grow]"));
 
 		JButton btnHuy = new JButton("Hủy");
-		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnHuy.setBackground(new Color(255, 255, 255));
+		btnHuy.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		button_panel.add(btnHuy, "cell 0 0,alignx left,aligny center");
 
 		JButton btnNhapHang = new JButton("Nhập hàng");
-		btnNhapHang.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNhapHang.setBackground(new Color(255, 255, 255));
+		btnNhapHang.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		button_panel.add(btnNhapHang, "cell 1 0,alignx right,aligny center");
 
 		JLabel lblNewLabel_1_4 = new JLabel("Số lượng:");
 		input_panel.add(lblNewLabel_1_4, "cell 0 2");
-		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_4.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 
 		txtQuantity = new JTextField();
 		input_panel.add(txtQuantity, "cell 1 2 4 1,growx");
-		txtQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtQuantity.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtQuantity.setColumns(10);
 
 		JLabel lblNewLabel_1_4_1 = new JLabel("Giá (vnđ):");
 		input_panel.add(lblNewLabel_1_4_1, "cell 0 3");
-		lblNewLabel_1_4_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_4_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 
 		txtCost = new JTextField();
 		input_panel.add(txtCost, "cell 1 3 4 1,growx");
-		txtCost.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCost.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtCost.setColumns(10);
 
 		JLabel lblNewLabel_1_4_1_11 = new JLabel("Ngày bán:");
-		lblNewLabel_1_4_1_11.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_4_1_11.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		input_panel.add(lblNewLabel_1_4_1_11, "cell 0 4,alignx left,aligny center");
 
 		txtDay = new JTextField();
-		txtDay.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtDay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtDay.setColumns(10);
 		input_panel.add(txtDay, "cell 1 4,growx");
 
 		txtMonth = new JTextField();
-		txtMonth.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtMonth.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtMonth.setColumns(10);
 		input_panel.add(txtMonth, "cell 2 4,growx");
 
 		txtYear = new JTextField();
-		txtYear.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtYear.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		txtYear.setColumns(10);
 		input_panel.add(txtYear, "cell 3 4,growx");
 
 		loadData();
 
+		btnHuy.setIcon(getIcon("resources/icon/cancel.png", 30, 30));
 		btnHuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -267,6 +277,7 @@ public class NhapHangMoi extends JInternalFrame {
 			}
 		});
 
+		btnNhapHang.setIcon(getIcon("resources/icon/add.png", 30, 30));
 		btnNhapHang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (isValidInput()) {
@@ -289,6 +300,14 @@ public class NhapHangMoi extends JInternalFrame {
 				}
 			}
 		});
+	}
+	
+	// Get and resize Image to ImageIcon
+	public static ImageIcon getIcon(String path, int width, int height) {
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		return icon;
 	}
 
 	// Tắt title bar của JInternalFrame

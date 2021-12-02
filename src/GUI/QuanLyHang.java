@@ -50,6 +50,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class QuanLyHang extends JInternalFrame {
 
@@ -95,6 +96,14 @@ public class QuanLyHang extends JInternalFrame {
 				}
 			}
 		});
+	}
+	
+	// Get and resize Image to ImageIcon
+	public static ImageIcon getIcon(String path, int width, int height) {
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		return icon;
 	}
 
 	// Load data
@@ -142,10 +151,14 @@ public class QuanLyHang extends JInternalFrame {
 		// Ẩn các column
 		hideColumn(3); // Ảnh
 		hideColumn(4);
+		btnSua.setBackground(new Color(255, 255, 255));
 		btnSua.setEnabled(true);
+		btnXoa.setBackground(new Color(255, 255, 255));
 		btnXoa.setEnabled(true);
+		btnLuu.setBackground(new Color(255, 255, 255));
 
 		btnLuu.setEnabled(false);
+		btnHuy.setBackground(new Color(255, 255, 255));
 		btnHuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -174,6 +187,7 @@ public class QuanLyHang extends JInternalFrame {
 
 	// Cài đặt bật tắt cho container như jpanel
 	private void setEnableAll(Component component, boolean enable) {
+		input_panel.setBackground(new Color(255, 255, 255));
 		component.setEnabled(enable);
 		try {
 			Component[] components = ((JComponent) component).getComponents();
@@ -246,15 +260,18 @@ public class QuanLyHang extends JInternalFrame {
 	 * @throws ClassNotFoundException
 	 */
 	public QuanLyHang() throws UnsupportedLookAndFeelException, ClassNotFoundException, SQLException {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setFrameIcon(null);
 		setBorder(null);
 		UIManager.setLookAndFeel(new FlatLightLaf());
 
 		setBounds(100, 100, 891, 706);
 		getContentPane().setLayout(new MigLayout("", "[grow][growprio 101,grow]", "[grow]"));
+		left_panel.setBackground(new Color(255, 255, 255));
 
 		getContentPane().add(left_panel, "cell 0 0,grow");
 		left_panel.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
+		img_panel.setBackground(new Color(255, 255, 255));
 
 		left_panel.add(img_panel, "cell 0 0,grow");
 		img_panel.setLayout(new MigLayout("", "[grow][grow,center][grow]", "[grow]"));
@@ -266,69 +283,72 @@ public class QuanLyHang extends JInternalFrame {
 		input_panel.setLayout(new MigLayout("", "[][grow][]", "[grow][grow][grow][grow][grow][grow]"));
 
 		JLabel lblNewLabel = new JLabel("Thương hiệu:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel, "cell 0 0,alignx left,aligny center");
 
-		cmbBrand.setFont(new Font("Tahoma", Font.BOLD, 13));
+		cmbBrand.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		input_panel.add(cmbBrand, "cell 1 0 2 1,growx");
 
 		JLabel lblNewLabel_1 = new JLabel("Tên sản phẩm:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1, "cell 0 1,alignx left,aligny top");
 
 		txtName = new JTextArea();
 		txtName.setLineWrap(true);
 		txtName.setTabSize(2);
 		txtName.setRows(1);
-		txtName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtName.setFont(new Font("Segoe UI Semibold", Font.BOLD, 12));
 		input_panel.add(txtName, "cell 1 1 2 1,growx,aligny top");
 		txtName.setColumns(10);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Ảnh:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1_1, "cell 0 2,alignx left");
 
 		txtImage = new JTextField();
-		txtImage.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtImage.setFont(new Font("Segoe UI Semibold", Font.BOLD, 12));
 		txtImage.setColumns(10);
 		input_panel.add(txtImage, "cell 1 2 2 1,growx");
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("Mô tả:");
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_1_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1_1_1, "cell 0 3,alignx left,aligny top");
 
 		txtDescribe = new JTextArea();
 		txtDescribe.setLineWrap(true);
 		txtDescribe.setTabSize(2);
 		txtDescribe.setRows(5);
-		txtDescribe.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtDescribe.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		txtDescribe.setColumns(10);
 		input_panel.add(txtDescribe, "cell 1 3 2 1,growx");
 
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Giá:");
-		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1_1_1_1, "cell 0 4,alignx left");
 
 		txtCost = new JTextField();
-		txtCost.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtCost.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtCost.setColumns(10);
 		input_panel.add(txtCost, "cell 1 4 2 1,growx");
 
-		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblQuantity.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		input_panel.add(lblQuantity, "cell 0 5");
 
-		lblSaleDate.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSaleDate.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		input_panel.add(lblSaleDate, "cell 1 5");
-		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblId.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 
 		input_panel.add(lblId, "cell 2 5");
+		right_panel.setBackground(new Color(255, 255, 255));
 
 		getContentPane().add(right_panel, "cell 1 0,grow");
 		right_panel.setLayout(new MigLayout("", "[grow]", "[][grow][]"));
+		seacrh_panel.setBackground(new Color(255, 255, 255));
 
 		right_panel.add(seacrh_panel, "cell 0 0,grow");
 		seacrh_panel.setLayout(new MigLayout("", "[grow][]", "[]"));
-		btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnTim.setBackground(new Color(255, 255, 255));
+		btnTim.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		seacrh_panel.add(btnTim, "cell 1 0");
 		txtSearch.addFocusListener(new FocusAdapter() {
 			@Override
@@ -343,6 +363,8 @@ public class QuanLyHang extends JInternalFrame {
 					txtSearch.setText("Nhập để tìm kiếm");
 			}
 		});
+		
+		btnTim.setIcon(getIcon("resources/icon/search.png", 30, 30));
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Lấy sorter ra để tìm kiếm (filter)
@@ -373,7 +395,7 @@ public class QuanLyHang extends JInternalFrame {
 		});
 
 		txtSearch.setText("Nhập để tìm kiếm");
-		txtSearch.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtSearch.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtSearch.setColumns(10);
 		seacrh_panel.add(txtSearch, "cell 0 0,growx");
 
@@ -389,10 +411,12 @@ public class QuanLyHang extends JInternalFrame {
 					data_binding_to_left_panel(row);
 			}
 		});
+		button_panel.setBackground(new Color(255, 255, 255));
 
 		right_panel.add(button_panel, "cell 0 2,alignx right,growy");
 
-		btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnSua.setIcon(getIcon("resources/icon/edit.png", 30, 30));
+		btnSua.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnSua);
 		btnSua.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -417,7 +441,8 @@ public class QuanLyHang extends JInternalFrame {
 			}
 		});
 
-		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnXoa.setIcon(getIcon("resources/icon/delete.png", 30, 30));
+		btnXoa.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnXoa);
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -448,7 +473,8 @@ public class QuanLyHang extends JInternalFrame {
 			}
 		});
 
-		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLuu.setIcon(getIcon("resources/icon/save.png", 30, 30));
+		btnLuu.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnLuu);
 		btnLuu.addActionListener(new ActionListener() {
 			@Override
@@ -483,8 +509,9 @@ public class QuanLyHang extends JInternalFrame {
 
 			}
 		});
-
-		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		btnHuy.setIcon(getIcon("resources/icon/cancel.png", 30, 30));
+		btnHuy.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnHuy);
 		load_data();
 

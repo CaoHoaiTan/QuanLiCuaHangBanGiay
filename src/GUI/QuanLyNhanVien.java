@@ -17,14 +17,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import com.sun.jdi.Value;
-
 import DAO.ConnectionUtils;
 import MODEL.Account;
 import MODEL.AccountModel;
-import MODEL.KhachHang;
-import MODEL.KhachHangModel;
-
 import java.awt.Font;
 import java.awt.Image;
 
@@ -40,7 +35,6 @@ import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.event.ChangeListener;
@@ -114,18 +108,17 @@ public class QuanLyNhanVien extends JInternalFrame {
 
 	// Kiểm tra thông tin nhập vào
 	private boolean isValidInput() {
-		if(txtFullName.getText().isBlank() || txtSDT.getText().isBlank() || txtNgaySinh.getText().isBlank()
+		if (txtFullName.getText().isBlank() || txtSDT.getText().isBlank() || txtNgaySinh.getText().isBlank()
 				|| txtUserName.getText().isBlank() || txtPass.getText().isBlank()) {
 			return false;
 		}
-		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-		LocalDate tuoiDate= LocalDate.parse(txtNgaySinh.getText());
+		LocalDate tuoiDate = LocalDate.parse(txtNgaySinh.getText());
 		LocalDate namHienTaiDate = LocalDate.now();
-		
-		if(namHienTaiDate.compareTo(tuoiDate)<18) {
+
+		if (namHienTaiDate.compareTo(tuoiDate) < 18) {
 			return false;
 		}
-		if (txtPass.getText().length() <8) {
+		if (txtPass.getText().length() < 8) {
 			return false;
 		}
 		return true;
@@ -135,10 +128,10 @@ public class QuanLyNhanVien extends JInternalFrame {
 	private void load_data() throws SQLException, ClassNotFoundException {
 		// Load dữ liệu lên JTable
 		Connection conn = ConnectionUtils.getConnection();
-		String[] colName = { "ID", "Họ và tên", "Giới tính", "Avatar", "SDT", "Địa chỉ", "Ngày sinh", "Quyền"
-				, "Tên đăng nhập", "Mật khẩu" };
+		String[] colName = { "ID", "Họ và tên", "Giới tính", "Avatar", "SDT", "Địa chỉ", "Ngày sinh", "Quyền",
+				"Tên đăng nhập", "Mật khẩu" };
 		final Class<?>[] colClass = new Class[] { Integer.class, String.class, String.class, String.class, String.class,
-				String.class, String.class, String.class, String.class, String.class};
+				String.class, String.class, String.class, String.class, String.class };
 		Object[][] data = AccountModel.load_Nhanvien_to_Obj(conn);
 
 		DefaultTableModel dfModel = new DefaultTableModel(data, colName) {
@@ -177,9 +170,9 @@ public class QuanLyNhanVien extends JInternalFrame {
 
 		// Reset và tắt input panel
 		setEnableAll(input_panel, false);
-		
+
 		resetInputText();
-		
+
 		// Bật search panel
 		setEnableAll(seacrh_panel, true);
 	}
@@ -211,9 +204,7 @@ public class QuanLyNhanVien extends JInternalFrame {
 		rdbtnTrue.setSelected(false);
 		rdbtnMale.setSelected(false);
 		rdbtnFemale.setSelected(false);
-		
-		
-		
+
 	}
 
 	// data binding
@@ -229,15 +220,14 @@ public class QuanLyNhanVien extends JInternalFrame {
 			txtNgaySinh.setText(table.getValueAt(row, 6).toString());
 			txtUserName.setText(table.getValueAt(row, 8).toString());
 			txtPass.setText(table.getValueAt(row, 9).toString());
-			
+
 			// binding quyền
-			String isAminString=table.getValueAt(row, 7).toString();
-			if(isAminString.equals("1"))
+			String isAminString = table.getValueAt(row, 7).toString();
+			if (isAminString.equals("1"))
 				rdbtnTrue.setSelected(true);
 			else {
 				rdbtnFalse.setSelected(true);
 			}
-				
 
 			// binding giới tính
 			String sexString = table.getValueAt(row, 2).toString();
@@ -252,8 +242,7 @@ public class QuanLyNhanVien extends JInternalFrame {
 			imgNhanVien = new ImageIcon(img);
 			lblAvatar.setIcon(imgNhanVien);
 			lblAvatar.setText("");
-			
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -274,44 +263,43 @@ public class QuanLyNhanVien extends JInternalFrame {
 		setBounds(100, 100, 891, 706);
 		getContentPane().setLayout(new MigLayout("", "[grow]", "[][][grow][]"));
 
-		
 		getContentPane().add(panelHead, "cell 0 0,grow");
-		input_panel.setLayout(new MigLayout("", "[][150px][100px][100px][grow]", "[24px,grow][24px][24px][24px][24px][24px][][][][][24px]"));	
+		input_panel.setLayout(new MigLayout("", "[][150px][100px][100px][grow]",
+				"[24px,grow][24px][24px][24px][24px][24px][][][][][24px]"));
 
 		panelHead.setLayout(new MigLayout("", "[grow][200px]", "[312px,grow]"));
 		panelHead.add(input_panel, "cell 0 0,grow");
-		
-		
+
 		panelHead.add(panel_1, "cell 1 0,grow");
 		panel_1.setLayout(new BorderLayout(0, 0));
-		lblAvatar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblAvatar.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblAvatar, BorderLayout.CENTER);
 
 		JLabel lblNewLabel = new JLabel("ID:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel, "cell 1 0,alignx left,aligny center");
 
 		txtID = new JTextField();
 		txtID.setHorizontalAlignment(SwingConstants.LEFT);
-		txtID.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtID.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(txtID, "cell 2 0 3 1,growx,aligny top");
 		txtID.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Họ và tên:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1, "cell 1 1,alignx left,aligny center");
 
 		txtFullName = new JTextField();
-		txtFullName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtFullName.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtFullName.setColumns(10);
 		input_panel.add(txtFullName, "cell 2 1 3 1,growx,aligny top");
 
 		JLabel lblNewLabel_2 = new JLabel("Giới tính:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_2, "cell 1 2,alignx left,aligny top");
 
-		rdbtnMale.setFont(new Font("Tahoma", Font.BOLD, 14));
+		rdbtnMale.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		input_panel.add(rdbtnMale, "cell 2 2,alignx left,aligny center");
 		rdbtnMale.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -325,44 +313,44 @@ public class QuanLyNhanVien extends JInternalFrame {
 					rdbtnMale.setSelected(!rdbtnFemale.isSelected());
 			}
 		});
-		
-				rdbtnFemale.setFont(new Font("Tahoma", Font.BOLD, 14));
-				input_panel.add(rdbtnFemale, "cell 3 2,alignx left,aligny center");
+
+		rdbtnFemale.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+		input_panel.add(rdbtnFemale, "cell 3 2,alignx left,aligny center");
 
 		JLabel lblNewLabel_3 = new JLabel("Avatar (link):");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_3.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_3, "cell 1 3,alignx left,aligny center");
 
 		txtAvatar = new JTextField();
-		txtAvatar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtAvatar.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtAvatar.setColumns(10);
 		input_panel.add(txtAvatar, "cell 2 3 3 1,growx,aligny top");
 
-		lblDiscount.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDiscount.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblDiscount, "cell 1 4,alignx left,aligny center");
 		txtSDT.setText("");
-		txtSDT.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtSDT.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtSDT.setColumns(10);
-		
+
 		input_panel.add(txtSDT, "cell 2 4 3 1,growx");
-		lblaCh.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+		lblaCh.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+
 		input_panel.add(lblaCh, "cell 1 5,alignx left,aligny center");
 		txtDiaChi.setText("");
-		txtDiaChi.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtDiaChi.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtDiaChi.setColumns(10);
-		
+
 		input_panel.add(txtDiaChi, "cell 2 5 3 1,growx,aligny top");
-		lblNgySinh.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+		lblNgySinh.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+
 		input_panel.add(lblNgySinh, "cell 1 6,alignx left,aligny center");
 		txtNgaySinh.setText("");
-		txtNgaySinh.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtNgaySinh.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtNgaySinh.setColumns(10);
-		
+
 		input_panel.add(txtNgaySinh, "cell 2 6 2 1,growx");
-		lblIsadmin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+		lblIsadmin.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+
 		input_panel.add(lblIsadmin, "cell 1 7");
 		rdbtnTrue.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -370,8 +358,8 @@ public class QuanLyNhanVien extends JInternalFrame {
 					rdbtnFalse.setSelected(!rdbtnTrue.isSelected());
 			}
 		});
-		rdbtnTrue.setFont(new Font("Tahoma", Font.BOLD, 14));
-		
+		rdbtnTrue.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+
 		input_panel.add(rdbtnTrue, "cell 2 7,alignx left,aligny center");
 		rdbtnFalse.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -379,24 +367,24 @@ public class QuanLyNhanVien extends JInternalFrame {
 					rdbtnTrue.setSelected(!rdbtnFalse.isSelected());
 			}
 		});
-		rdbtnFalse.setFont(new Font("Tahoma", Font.BOLD, 14));
-		
+		rdbtnFalse.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+
 		input_panel.add(rdbtnFalse, "cell 3 7,alignx left,aligny center");
-		lblUsernmae.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+		lblUsernmae.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+
 		input_panel.add(lblUsernmae, "cell 1 8");
 		txtUserName.setText("");
-		txtUserName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtUserName.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtUserName.setColumns(10);
-		
+
 		input_panel.add(txtUserName, "cell 2 8 3 1,growx");
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+		lblPassword.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+
 		input_panel.add(lblPassword, "cell 1 9,aligny baseline");
 		txtPass.setText("");
-		txtPass.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtPass.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtPass.setColumns(10);
-		
+
 		input_panel.add(txtPass, "cell 2 9 3 1,growx,aligny top");
 
 		getContentPane().add(seacrh_panel, "cell 0 1,grow");
@@ -417,9 +405,11 @@ public class QuanLyNhanVien extends JInternalFrame {
 			}
 		});
 		txtSearch.setText("Nhập để tìm kiếm");
-		txtSearch.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtSearch.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		txtSearch.setColumns(100);
 		seacrh_panel.add(txtSearch, "cell 0 0,alignx left,aligny center");
+		
+		btnTim.setIcon(getIcon("resources/icon/search.png", 30, 30));
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Lấy sorter ra để tìm kiếm (filter)
@@ -448,7 +438,7 @@ public class QuanLyNhanVien extends JInternalFrame {
 				}
 			}
 		});
-		btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnTim.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 
 		seacrh_panel.add(btnTim, "cell 1 0");
 
@@ -467,7 +457,7 @@ public class QuanLyNhanVien extends JInternalFrame {
 					data_binding_to_intput_panel(row);
 			}
 		});
-		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		table.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		table.setAutoCreateRowSorter(true);
 		table.setAutoResizeMode(WIDTH);
 		scrollPane.setViewportView(table);
@@ -476,7 +466,8 @@ public class QuanLyNhanVien extends JInternalFrame {
 		getContentPane().add(button_panel, "cell 0 3,grow");
 		button_panel.setLayout(new MigLayout("", "[79px][63px][63px][63px][63px]", "[29px]"));
 
-		btnThem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnThem.setIcon(getIcon("resources/icon/add.png", 30, 30));
+		btnThem.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnThem, "cell 0 0,alignx left,aligny top");
 		btnThem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -498,13 +489,13 @@ public class QuanLyNhanVien extends JInternalFrame {
 				setEnableAll(seacrh_panel, false);
 				table.setEnabled(false);
 
-				
 				// Không cho nhập ID
 				txtID.setEnabled(false);
 			}
 		});
 
-		btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnSua.setIcon(getIcon("resources/icon/save.png", 30, 30));
+		btnSua.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnSua, "cell 1 0,alignx left,aligny top");
 		btnSua.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -534,7 +525,8 @@ public class QuanLyNhanVien extends JInternalFrame {
 			}
 		});
 
-		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnXoa.setIcon(getIcon("resources/icon/delete.png", 30, 30));
+		btnXoa.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnXoa, "cell 2 0,alignx left,aligny top");
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -549,11 +541,12 @@ public class QuanLyNhanVien extends JInternalFrame {
 							Connection conn = ConnectionUtils.getConnection();
 							boolean isSuccess = AccountModel.delete_NhanVien(conn, txtID.getText());
 							if (isSuccess) {
-								JOptionPane.showMessageDialog(txtID, "Xóa Nhân viên '" + txtFullName.getText() +"' thành công!");
+								JOptionPane.showMessageDialog(txtID,
+										"Xóa Nhân viên '" + txtFullName.getText() + "' thành công!");
 								load_data();
-							}
-							else
-								JOptionPane.showMessageDialog(txtID, "Xóa Nhân viên '" + txtFullName.getText() +"' thất bại!");
+							} else
+								JOptionPane.showMessageDialog(txtID,
+										"Xóa Nhân viên '" + txtFullName.getText() + "' thất bại!");
 						} catch (ClassNotFoundException | SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -563,7 +556,8 @@ public class QuanLyNhanVien extends JInternalFrame {
 			}
 		});
 
-		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLuu.setIcon(getIcon("resources/icon/save.png", 30, 30));
+		btnLuu.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnLuu, "cell 3 0,alignx left,aligny top");
 		btnLuu.addActionListener(new ActionListener() {
 			@Override
@@ -575,7 +569,7 @@ public class QuanLyNhanVien extends JInternalFrame {
 						try {
 							Connection conn = ConnectionUtils.getConnection();
 							Account NV = new Account();
-							
+
 							NV.setUsername(txtUserName.getText());
 							NV.setPassword(txtPass.getText());
 							NV.setFullname(txtFullName.getText());
@@ -588,18 +582,16 @@ public class QuanLyNhanVien extends JInternalFrame {
 							else
 								NV.setSex("Nữ");
 							NV.setDateOfBirth(Date.valueOf(txtNgaySinh.getText()));
-							if (rdbtnTrue.isSelected())
-								NV.setIsAdmin(1);
-							else
-								NV.setIsAdmin(0);
+							NV.setIsAdmin(rdbtnTrue.isSelected());
 //							KH.setEmail(txtEmail.getText());
 							boolean isSuccess = AccountModel.insert_NhanVien(conn, NV);
 							if (isSuccess) {
-								JOptionPane.showMessageDialog(txtID, "Thêm Nhân viên '" + txtFullName.getText() +"' thành công!");
+								JOptionPane.showMessageDialog(txtID,
+										"Thêm Nhân viên '" + txtFullName.getText() + "' thành công!");
 								load_data();
-							}
-							else
-								JOptionPane.showMessageDialog(txtID, "Thêm Nhân viên '" + txtFullName.getText() +"' thất bại!");
+							} else
+								JOptionPane.showMessageDialog(txtID,
+										"Thêm Nhân viên '" + txtFullName.getText() + "' thất bại!");
 						} catch (ClassNotFoundException | SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -622,17 +614,15 @@ public class QuanLyNhanVien extends JInternalFrame {
 							else
 								NV.setSex("Nữ");
 							NV.setDateOfBirth(Date.valueOf(txtNgaySinh.getText()));
-							if (rdbtnTrue.isSelected())
-								NV.setIsAdmin(1);
-							else
-								NV.setIsAdmin(0);
+							NV.setIsAdmin(rdbtnTrue.isSelected());
 							boolean isSuccess = AccountModel.update_NhanVien(conn, NV);
 							if (isSuccess) {
-								JOptionPane.showMessageDialog(txtID, "Cập nhật thông tin Nhân Viên '" + txtFullName.getText() +"' thành công!");
+								JOptionPane.showMessageDialog(txtID,
+										"Cập nhật thông tin Nhân Viên '" + txtFullName.getText() + "' thành công!");
 								load_data();
-							}
-							else
-								JOptionPane.showMessageDialog(txtID, "Cập nhật thông tin Nhân Viên '" + txtFullName.getText() +"' thất bại!");
+							} else
+								JOptionPane.showMessageDialog(txtID,
+										"Cập nhật thông tin Nhân Viên '" + txtFullName.getText() + "' thất bại!");
 						} catch (ClassNotFoundException | SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -640,14 +630,14 @@ public class QuanLyNhanVien extends JInternalFrame {
 					}
 				} else {
 					// Báo lỗi
-					JOptionPane.showMessageDialog(input_panel, "Dữ liệu nhập vào không hợp lệ\n"
-							+ "Điều kiện:\n"
-							+ "Họ tên, sdt, ngày sinh(>17 tuổi), username,password(>7 kí tự) không được bỏ trống!");
+					JOptionPane.showMessageDialog(input_panel, "Dữ liệu nhập vào không hợp lệ\n" + "Điều kiện:\n"
+							+ "Họ tên, sdt, ngày sinh (>= 18 tuổi), username, password(>= 8 kí tự) không được bỏ trống!");
 				}
 			}
 		});
 
-		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnHuy.setIcon(getIcon("resources/icon/cancel.png", 30, 30));
+		btnHuy.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnHuy, "cell 4 0,alignx left,aligny top");
 		btnHuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -659,6 +649,14 @@ public class QuanLyNhanVien extends JInternalFrame {
 			}
 		});
 
+	}
+	
+	// Get and resize Image to ImageIcon
+	public static ImageIcon getIcon(String path, int width, int height) {
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		return icon;
 	}
 
 	// Tắt title bar của JInternalFrame

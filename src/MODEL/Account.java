@@ -12,11 +12,11 @@ public class Account {
 	private String address;
 	private String sex;
 	private Date dateOfBirth;
-	private int isAdmin;
+	private boolean isAdmin;
 	public Account() {
 	}
 	public Account(int id, String username, String password, String fullname, String avatar, String phoneNumber,
-			String address, String sex, Date dateOfBirth, int isAdmin) {
+			String address, String sex, Date dateOfBirth, boolean isAdmin) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -82,10 +82,10 @@ public class Account {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public int getIsAdmin() {
+	public boolean isAdmin() {
 		return isAdmin;
 	}
-	public void setIsAdmin(int isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	@Override

@@ -10,6 +10,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 public class QuanLyHangHoa extends JInternalFrame {
 
@@ -48,10 +49,14 @@ public class QuanLyHangHoa extends JInternalFrame {
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JInternalFrame quanLy = new QuanLyHang();
+		quanLy.getContentPane().setBackground(new Color(255, 255, 255));
 		tabbedPane.addTab("Quản lý", null, quanLy, null);
+		tabbedPane.setBackgroundAt(0, new Color(255, 255, 255));
 		
 		JInternalFrame nhapHang = new NhapHang();
+		nhapHang.getContentPane().setBackground(new Color(255, 255, 255));
 		tabbedPane.addTab("Nhập hàng", null, nhapHang, null);
+		tabbedPane.setBackgroundAt(1, new Color(255, 255, 255));
 		nhapHang.setVisible(true);
 		quanLy.setVisible(true);
 

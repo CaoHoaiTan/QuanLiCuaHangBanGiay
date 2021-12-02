@@ -5,13 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import DAO.ConnectionUtils;
 
 public class ThuongHieuModel {
 	 public static Object[][] listThuongHieu_to_Obj(List<ThuongHieu> listTH) {
@@ -87,7 +83,7 @@ public class ThuongHieuModel {
 	    
 	    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 	    	//System.out.println(load_ThuongHieu(ConnectionUtils.getConnection()));
-	    	Connection connection= ConnectionUtils.getConnection();
+//	    	Connection connection= ConnectionUtils.getConnection();
 //	    	List<ThuongHieu> thuongHieus= ThuongHieuModel.load_ThuongHieu(connection);
 //	    	for(ThuongHieu thuongHieu : thuongHieus) {
 //	    		 System.out.println(thuongHieu);

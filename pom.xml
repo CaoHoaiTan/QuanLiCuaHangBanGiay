@@ -28,11 +28,20 @@
             <version>1.6.4</version>
         </dependency>
 
+        <!-- Mig Layout -->
         <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout -->
         <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout</artifactId>
             <version>3.5.5</version>
+        </dependency>
+
+        <!-- JFreeChart -->
+        <!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.3</version>
         </dependency>
     </dependencies>
 
