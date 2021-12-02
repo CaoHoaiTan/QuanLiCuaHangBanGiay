@@ -1,19 +1,13 @@
 package GUI;
 
 import java.awt.Component;
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.plaf.InternalFrameUI;
@@ -23,46 +17,33 @@ import DAO.ConnectionUtils;
 import MODEL.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.IntelliJTheme.ThemeLaf;
-
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Image;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTable;
-import javax.swing.JRadioButton;
-import javax.management.modelmbean.ModelMBean;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
-
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class QuanLyDonHang extends JInternalFrame {
 
@@ -74,8 +55,7 @@ public class QuanLyDonHang extends JInternalFrame {
 	private JTextField txtAddress;
 	private JTextField txtTotalCost;
 	private JTextField txtSearch;
-	private JComboBox cmbPhone;
-	private JComboBox cmbMaNV;
+	private JComboBox<String> cmbPhone;
 	private JTable tblDetail;
 	private JScrollPane scrollPane = new JScrollPane();
 	private JTextField txtTenNV;
@@ -96,22 +76,9 @@ public class QuanLyDonHang extends JInternalFrame {
 	private int rowtable=0;
 	private JLabel lblDiscount;
 	private JLabel lblTotalcost;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					QuanLyDonHang frame = new QuanLyDonHang();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	JComboBox addcusToTable(JComboBox cmbx)
+	private JTextField txtMaNV;
+
+	JComboBox<String> addcusToTable(JComboBox<String> cmbx)
 	{
 		//JComboBox cbxBox = null;
 		try {
@@ -136,7 +103,7 @@ public class QuanLyDonHang extends JInternalFrame {
 		}
 		return cmbx;
 	}
-	void initDataTable(JComboBox cmbx) {
+	void initDataTable(JComboBox<String> cmbx) {
 		DefaultCellEditor cusCell = new DefaultCellEditor(addcusToTable(cmbx));
 
 		tblDetail.getColumnModel().getColumn(1).setCellEditor(cusCell);
@@ -170,8 +137,8 @@ public class QuanLyDonHang extends JInternalFrame {
 
 		tblDetail.setModel(model);
 
-		TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-		JComboBox cmbHH = new JComboBox();
+		tblDetail.getColumnModel().getColumn(1);
+		JComboBox<String> cmbHH = new JComboBox<String>();
 
 
 		//Add comboBox
@@ -248,8 +215,8 @@ public class QuanLyDonHang extends JInternalFrame {
 					{
 						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
 
-						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-						JComboBox cmbHH = new JComboBox();
+						tblDetail.getColumnModel().getColumn(1);
+						JComboBox<String> cmbHH = new JComboBox<String>();
 
 
 						//Add comboBox
@@ -294,7 +261,7 @@ public class QuanLyDonHang extends JInternalFrame {
 
 
 
-	private void AddItemPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
+	private void AddItemPhone(JComboBox<String> cmbPhone) throws SQLException, ClassNotFoundException {
 		Connection conn = ConnectionUtils.getConnection();
 		Statement st = conn.createStatement();
 
@@ -308,21 +275,7 @@ public class QuanLyDonHang extends JInternalFrame {
 
 	}
 
-	private void AddItemMaNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
-		Connection conn = ConnectionUtils.getConnection();
-		Statement st = conn.createStatement();
-
-		String sql = "Select * from Account";
-
-		ResultSet rs = st.executeQuery(sql);
-		while(rs.next())
-		{
-			cmbMaNV.addItem(rs.getString(2));
-		}
-
-	}
-
-	private void LoadTxt_FromPhone(JComboBox cmbPhone) throws SQLException, ClassNotFoundException {
+	private void LoadTxt_FromPhone(JComboBox<String> cmbPhone) throws SQLException, ClassNotFoundException {
 		String Phone = String.valueOf(cmbPhone.getSelectedItem());
 		try {
 			Connection conn = ConnectionUtils.getConnection();
@@ -350,32 +303,6 @@ public class QuanLyDonHang extends JInternalFrame {
 		}
 
 	}
-
-	private void LoadTenNV(JComboBox cmbMaNV) throws SQLException, ClassNotFoundException {
-		String maNV = String.valueOf(cmbMaNV.getSelectedItem());
-		try {
-			Connection conn = ConnectionUtils.getConnection();
-			String sql = "Select fullname  from Account where username = ?";
-
-			PreparedStatement pstm = conn.prepareStatement(sql);
-
-
-			pstm.setString(1, maNV);
-
-			ResultSet rs = pstm.executeQuery();
-			while (rs.next()) {
-				txtTenNV.setText(rs.getString("fullname"));
-			}
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-	}
-
 
 	void getChiTietDonHangToTable(Connection conn,int maDH) throws SQLException
 	{
@@ -413,8 +340,8 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			tblDetail.setModel(model);
 
-			TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-			JComboBox cmbHH = new JComboBox();
+			tblDetail.getColumnModel().getColumn(1);
+			JComboBox<String> cmbHH = new JComboBox<String>();
 
 			//Add comboBox
 			initDataTable(cmbHH);
@@ -495,8 +422,8 @@ public class QuanLyDonHang extends JInternalFrame {
 					{
 						model.addRow(new Object[] {tblDetail.getRowCount() + 1 ,"","",0,0,""});
 
-						TableColumn colHangHoa = tblDetail.getColumnModel().getColumn(1);
-						JComboBox cmbHH = new JComboBox();
+						tblDetail.getColumnModel().getColumn(1);
+						JComboBox<String> cmbHH = new JComboBox<String>();
 
 
 						//Add comboBox
@@ -540,14 +467,15 @@ public class QuanLyDonHang extends JInternalFrame {
 	 *
 	 * @throws UnsupportedLookAndFeelException
 	 */
-	public QuanLyDonHang() throws UnsupportedLookAndFeelException {
+	public QuanLyDonHang(Account curUser) throws UnsupportedLookAndFeelException {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setFrameIcon(null);
 		setBorder(null);
 		UIManager.setLookAndFeel(new FlatLightLaf());
 		//Tạo frame thông báo
 		final JFrame frame = new JFrame();
 		ImageIcon imgSanPham = new ImageIcon("resources/icon/shop.png");
-		Image img = imgSanPham.getImage().getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
+		Image img = imgSanPham.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
 		frame.setIconImage(img);
 		//
 
@@ -555,16 +483,17 @@ public class QuanLyDonHang extends JInternalFrame {
 		getContentPane().setLayout(new MigLayout("", "[grow]", "[][][grow][]"));
 		//
 		input_panel = new JPanel();
+		input_panel.setBackground(new Color(255, 255, 255));
 		getContentPane().add(input_panel, "cell 0 0,grow");
-		input_panel.setLayout(new MigLayout("", "[][grow][][][][grow]", "[24px][24px][24px][24px][24px][24px]"));
+		input_panel.setLayout(new MigLayout("", "[][grow][][][][grow]", "[24px][24px][24px][24px][24px]"));
 
 		//
 		JLabel lblNewLabel_1 = new JLabel("Số điện thoại:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1, "flowy,cell 0 0,alignx left,aligny center");
 
 		//Thêm các item vào ComboBox
-		cmbPhone = new JComboBox();
+		cmbPhone = new JComboBox<String>();
 		try {
 			AddItemPhone(cmbPhone);
 		} catch (ClassNotFoundException e1) {
@@ -575,37 +504,41 @@ public class QuanLyDonHang extends JInternalFrame {
 			e1.printStackTrace();
 		}
 		input_panel.add(cmbPhone, "cell 1 0,growx");
+		
+		txtMaNV = new JTextField();
+		txtMaNV.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		txtMaNV.setEnabled(false);
+		txtMaNV.setColumns(10);
+		input_panel.add(txtMaNV, "cell 5 0,growx");
 
 
 		JLabel lblNewLabel = new JLabel("Tên khách hàng:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel, "cell 0 1,alignx trailing,aligny center");
 
 		txtTenKH = new JTextField();
 		txtTenKH.setEnabled(false);
-		txtTenKH.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtTenKH.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtTenKH.setColumns(10);
-		txtTenKH.enable(false);
 		input_panel.add(txtTenKH, "cell 1 1,growx,aligny top");
 
 		JLabel lblNewLabel_3 = new JLabel("Địa chỉ:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_3.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_3, "cell 0 2,alignx left,aligny center");
 
 		txtAddress = new JTextField();
 		txtAddress.setEnabled(false);
-		txtAddress.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtAddress.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtAddress.setColumns(10);
-		txtAddress.enable(false);
 		input_panel.add(txtAddress, "cell 1 2,growx,aligny top");
 
 		lblDiscount = new JLabel();
-		lblDiscount.setFont(new Font("Tahoma", Font.BOLD, 16));
-		input_panel.add(lblDiscount, "cell 0 5,alignx left,aligny center");
+		lblDiscount.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		input_panel.add(lblDiscount, "cell 0 4,alignx left,aligny center");
 
 		lblTotalcost = new JLabel();
-		lblTotalcost.setFont(new Font("Tahoma", Font.BOLD, 16));
-		input_panel.add(lblTotalcost, "cell 1 5,growx,aligny center");
+		lblTotalcost.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		input_panel.add(lblTotalcost, "cell 1 4,growx,aligny center");
 		//Load giá trị txt từ cmbPhone
 		try {
 			LoadTxt_FromPhone(cmbPhone);
@@ -622,6 +555,7 @@ public class QuanLyDonHang extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
 
+				@SuppressWarnings("unchecked")
 				JComboBox<String> cmb = (JComboBox<String>) e.getSource();
 
 				String phone = String.valueOf(cmb.getSelectedItem());
@@ -668,23 +602,9 @@ public class QuanLyDonHang extends JInternalFrame {
 		});
 
 		JLabel lblNewLabel_2 = new JLabel("Tài khoản nhân viên:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_2, "flowx,cell 3 0");
 
-		//ComboBox NV
-		cmbMaNV = new JComboBox();
-
-		try {
-			AddItemMaNV(cmbMaNV);
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		input_panel.add(cmbMaNV, "cell 5 0,growx");
 
 
 		//
@@ -692,80 +612,36 @@ public class QuanLyDonHang extends JInternalFrame {
 
 
 		JLabel lblTnNhnVin = new JLabel("Tên nhân viên:");
-		lblTnNhnVin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTnNhnVin.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblTnNhnVin, "cell 3 1");
 
 		//
 
 
 		txtTenNV = new JTextField();
+		txtTenNV.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		txtTenNV.setEnabled(false);
-		txtTenNV.enable(false);
 		input_panel.add(txtTenNV, "cell 5 1,growx");
 		txtTenNV.setColumns(10);
 
-		//Lấy giá trị txt từ cmbNV
-		try {
-			LoadTenNV(cmbMaNV);
-		} catch (ClassNotFoundException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-
-		//Event cmbMaNV
-		cmbMaNV.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-
-				JComboBox<String> cmb = (JComboBox<String>) e.getSource();
-
-				String maNV = String.valueOf(cmb.getSelectedItem());
-				try {
-					Connection conn = ConnectionUtils.getConnection();
-					String sql = "Select fullname  from Account where username = ?";
-
-					PreparedStatement pstm = conn.prepareStatement(sql);
-
-
-					pstm.setString(1, maNV);
-
-					ResultSet rs = pstm.executeQuery();
-					while (rs.next()) {
-						txtTenNV.setText(rs.getString("fullname"));
-					}
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-
-
-			}
-		});
 		//
 
 
 		JLabel lblNewLabel_4 = new JLabel("Tổng tiền:");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
-		input_panel.add(lblNewLabel_4, "cell 0 4,alignx left,aligny center");
+		lblNewLabel_4.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		input_panel.add(lblNewLabel_4, "cell 0 3,alignx left,aligny center");
 
 		txtTotalCost = new JTextField();
 		txtTotalCost.setEnabled(false);
-		txtTotalCost.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtTotalCost.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtTotalCost.setColumns(10);
 		txtTotalCost.setText("0");
-		txtTotalCost.enable(false);
-		input_panel.add(txtTotalCost, "cell 1 4,growx,aligny top");
+		input_panel.add(txtTotalCost, "cell 1 3,growx,aligny top");
 
 
 
 		search_panel = new JPanel();
+		search_panel.setBackground(new Color(255, 255, 255));
 		getContentPane().add(search_panel, "cell 0 1,grow");
 		search_panel.setLayout(new MigLayout("", "[grow][][]", "[25px]"));
 
@@ -782,13 +658,14 @@ public class QuanLyDonHang extends JInternalFrame {
 					txtSearch.setText("Nhập mã đơn hàng cần tìm kiếm");
 			}
 		});
-		txtSearch.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtSearch.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtSearch.setColumns(100);
 		search_panel.add(txtSearch, "cell 0 0,alignx center,aligny center");
 
 		//Btn Tìm
 		btnTim = new JButton("Tìm");
 		search_panel.add(btnTim, "cell 1 0");
+		btnTim.setIcon(getIcon("resources/icon/search.png", 30, 30));
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Reset button
@@ -829,7 +706,6 @@ public class QuanLyDonHang extends JInternalFrame {
 
 						//txtngayDH.setText(dh.getNgayDonHang().toString());
 						cmbPhone.setSelectedItem(dh.getPhoneNumGuess());
-						cmbMaNV.setSelectedItem(dh.getStaffName());
 						txtTotalCost.setText(String.format("%.0f",dh.getCost()));
 
 
@@ -858,7 +734,7 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			}
 		});
-		btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnTim.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 
 
 		//Tạo table
@@ -866,11 +742,14 @@ public class QuanLyDonHang extends JInternalFrame {
 
 		//
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		getContentPane().add(panel, "cell 0 3,grow");
 		panel.setLayout(new MigLayout("", "[79px][][][63px][63px][63px][63px][]", "[29px]"));
 
 		//Btn thêm
 		btnThem = new JButton("Thêm");
+		btnThem.setBackground(new Color(255, 255, 255));
+		btnThem.setIcon(getIcon("resources/icon/add.png", 30, 30));
 		btnThem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				them = true;
@@ -895,13 +774,14 @@ public class QuanLyDonHang extends JInternalFrame {
 			}
 
 		});
-
-		btnThem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnThem.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		panel.add(btnThem, "cell 0 0,alignx left,aligny top");
 
 
 		btnSua = new JButton("Sửa");
+		btnSua.setBackground(new Color(255, 255, 255));
 		btnSua.setEnabled(false);
+		btnSua.setIcon(getIcon("resources/icon/edit.png", 30, 30));
 		btnSua.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -928,12 +808,12 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			}
 		});
-
-
-		btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnSua.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		panel.add(btnSua, "cell 1 0,alignx left,aligny top");
 
 		btnXoa = new JButton("Xóa");
+		btnXoa.setBackground(new Color(255, 255, 255));
+		btnXoa.setIcon(getIcon("resources/icon/delete.png", 30, 30));
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -1022,18 +902,19 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			}
 		});
-		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnXoa.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		panel.add(btnXoa, "cell 2 0,alignx left,aligny top");
 
 		btnLuu = new JButton("Lưu");
+		btnLuu.setBackground(new Color(255, 255, 255));
 		btnLuu.setEnabled(false);
+		btnLuu.setIcon(getIcon("resources/icon/save.png", 30, 30));
 		btnLuu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(them == true) {
 					// Đơn hàng
 					DonHang dHang = new DonHang();
 
-					dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
 					dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
 					dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
 
@@ -1133,7 +1014,6 @@ public class QuanLyDonHang extends JInternalFrame {
 
 							DonHang dHang = new DonHang();
 
-							dHang.setStaffName(cmbMaNV.getSelectedItem().toString());
 							dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
 							dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
 
@@ -1161,12 +1041,13 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			}
 		});
-		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLuu.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		panel.add(btnLuu, "cell 3 0,alignx left,aligny top");
 
 
 		//Btn Hủy
 		btnHuy = new JButton("Hủy");
+		btnHuy.setBackground(new Color(255, 255, 255));
 		btnHuy.setEnabled(false);
 		btnHuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1175,11 +1056,22 @@ public class QuanLyDonHang extends JInternalFrame {
 
 			}
 		});
-
-		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		btnHuy.setIcon(getIcon("resources/icon/cancel.png", 30, 30));
+		btnHuy.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		panel.add(btnHuy, "cell 4 0,alignx left,aligny top");
 
+		txtTenNV.setText(curUser.getFullname());
+		txtMaNV.setText(curUser.getUsername());
 
+	}
+	
+	// Get and resize Image to ImageIcon
+	public static ImageIcon getIcon(String path, int width, int height) {
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		return icon;
 	}
 
 	// Tắt title bar của JInternalFrame

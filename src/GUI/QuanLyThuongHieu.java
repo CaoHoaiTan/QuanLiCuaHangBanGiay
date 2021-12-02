@@ -19,15 +19,12 @@ import javax.swing.table.TableRowSorter;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import DAO.ConnectionUtils;
-import MODEL.KhachHang;
-import MODEL.KhachHangModel;
 import MODEL.ThuongHieu;
 import MODEL.ThuongHieuModel;
 
 import java.awt.Font;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTable;
-import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -39,21 +36,14 @@ import java.sql.SQLException;
 import java.util.regex.PatternSyntaxException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Panel;
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
 
 public class QuanLyThuongHieu extends JInternalFrame {
 
@@ -217,38 +207,38 @@ public class QuanLyThuongHieu extends JInternalFrame {
 		input_panel.setLayout(new MigLayout("", "[][grow][][grow][][grow]", "[24px,grow][24px][][24px,grow][24px][24px][24px]"));
 
 		JLabel lblNewLabel = new JLabel("Mã thương hiệu:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel, "cell 0 0,alignx trailing,aligny center");
 		txtMaTH.setText("");
-		txtMaTH.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtMaTH.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtMaTH.setColumns(10);
 		
 		input_panel.add(txtMaTH, "cell 1 0,alignx left");
 
 		JLabel lblNewLabel_1 = new JLabel("Tên thương hiệu:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		input_panel.add(lblNewLabel_1, "cell 0 1,alignx left,aligny center");
 
 		txtTenTH = new JTextField();
-		txtTenTH.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtTenTH.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		txtTenTH.setColumns(10);
 		input_panel.add(txtTenTH, "cell 1 1,growx,aligny top");
 				
 				input_panel.add(lblImageLogo, "cell 3 0 2 6,alignx center,aligny center");
 		
 				JLabel lblNewLabel_4 = new JLabel("Email:");
-				lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblNewLabel_4.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 				input_panel.add(lblNewLabel_4, "cell 0 2,alignx left,aligny center");
 		
 				txtEmail = new JTextField();
-				txtEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
+				txtEmail.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 				txtEmail.setColumns(10);
 				input_panel.add(txtEmail, "cell 1 2,growx,aligny top");
-				lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblNewLabel_4_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 				
 				input_panel.add(lblNewLabel_4_1, "cell 0 3,alignx left");
 				txtLogo.setText("");
-				txtLogo.setFont(new Font("Tahoma", Font.BOLD, 16));
+				txtLogo.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 				txtLogo.setColumns(10);
 				
 				input_panel.add(txtLogo, "cell 1 3,growx");
@@ -271,9 +261,11 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 		txtSearch.setText("Nhập để tìm kiếm");
-		txtSearch.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtSearch.setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
 		txtSearch.setColumns(100);
 		seacrh_panel.add(txtSearch, "cell 0 0,alignx left,aligny center");
+		
+		btnTim.setIcon(getIcon("resources/icon/search.png", 30, 30));
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Lấy sorter ra để tìm kiếm (filter)
@@ -302,7 +294,7 @@ public class QuanLyThuongHieu extends JInternalFrame {
 				}
 			}
 		});
-		btnTim.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnTim.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 
 		seacrh_panel.add(btnTim, "cell 1 0");
 
@@ -328,7 +320,7 @@ public class QuanLyThuongHieu extends JInternalFrame {
 					data_binding_to_intput_panel(row);
 			}
 		});
-		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		table.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		table.setAutoCreateRowSorter(true);
 		table.setAutoResizeMode(WIDTH);
 		scrollPane.setViewportView(table);
@@ -337,7 +329,8 @@ public class QuanLyThuongHieu extends JInternalFrame {
 		getContentPane().add(button_panel, "cell 0 3,grow");
 		button_panel.setLayout(new MigLayout("", "[79px][63px][63px][63px][63px]", "[29px]"));
 
-		btnThem.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnThem.setIcon(getIcon("resources/icon/add.png", 30, 30));
+		btnThem.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnThem, "cell 0 0,alignx left,aligny top");
 		btnThem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -366,7 +359,8 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 
-		btnSua.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnSua.setIcon(getIcon("resources/icon/edit.png", 30, 30));
+		btnSua.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnSua, "cell 1 0,alignx left,aligny top");
 		btnSua.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -396,7 +390,8 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 
-		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnXoa.setIcon(getIcon("resources/icon/delete.png", 30, 30));
+		btnXoa.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnXoa, "cell 2 0,alignx left,aligny top");
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -425,7 +420,8 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 
-		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLuu.setIcon(getIcon("resources/icon/save.png", 30, 30));
+		btnLuu.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnLuu, "cell 3 0,alignx left,aligny top");
 		btnLuu.addActionListener(new ActionListener() {
 			@Override
@@ -482,7 +478,8 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 
-		btnHuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnHuy.setIcon(getIcon("resources/icon/cancel.png", 30, 30));
+		btnHuy.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		button_panel.add(btnHuy, "cell 4 0,alignx left,aligny top");
 		btnHuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -494,6 +491,14 @@ public class QuanLyThuongHieu extends JInternalFrame {
 			}
 		});
 
+	}
+	
+	// Get and resize Image to ImageIcon
+	public static ImageIcon getIcon(String path, int width, int height) {
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		return icon;
 	}
 
 	// Tắt title bar của JInternalFrame
