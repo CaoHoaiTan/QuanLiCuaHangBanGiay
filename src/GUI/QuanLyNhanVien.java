@@ -33,24 +33,24 @@ public class QuanLyNhanVien extends JInternalFrame {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JTextField txtID;
-    private JTextField txtFullName;
-    private JTextField txtAvatar;
-    private JTextField txtSearch;
-    private JTable table;
-    private JButton btnHuy = new JButton("Hủy");
-    private JButton btnLuu = new JButton("Lưu");
-    private JButton btnXoa = new JButton("Xóa");
-    private JButton btnSua = new JButton("Sửa");
-    private JButton btnThem = new JButton("Thêm");
-    private JPanel button_panel = new JPanel();
-    private JPanel data_panel = new JPanel();
-    private JPanel seacrh_panel = new JPanel();
-    private JPanel input_panel = new JPanel();
-    private JRadioButton rdbtnFemale = new JRadioButton("Nữ");
-    private JRadioButton rdbtnMale = new JRadioButton("Nam");
-    private JLabel lblDiscount = new JLabel("SDT:");
-    private JButton btnTim = new JButton("Tìm kiếm");
+    private final JTextField txtID;
+    private final JTextField txtFullName;
+    private final JTextField txtAvatar;
+    private final JTextField txtSearch;
+    private final JTable table;
+    private final JButton btnHuy = new JButton("Hủy");
+    private final JButton btnLuu = new JButton("Lưu");
+    private final JButton btnXoa = new JButton("Xóa");
+    private final JButton btnSua = new JButton("Sửa");
+    private final JButton btnThem = new JButton("Thêm");
+    private final JPanel button_panel = new JPanel();
+    private final JPanel data_panel = new JPanel();
+    private final JPanel seacrh_panel = new JPanel();
+    private final JPanel input_panel = new JPanel();
+    private final JRadioButton rdbtnFemale = new JRadioButton("Nữ");
+    private final JRadioButton rdbtnMale = new JRadioButton("Nam");
+    private final JLabel lblDiscount = new JLabel("SDT:");
+    private final JButton btnTim = new JButton("Tìm kiếm");
     private boolean isInsert;
     private final JTextField txtSDT = new JTextField();
     private final JLabel lblaCh = new JLabel("Địa chỉ:");
@@ -96,10 +96,7 @@ public class QuanLyNhanVien extends JInternalFrame {
         if (namHienTaiDate.compareTo(tuoiDate) < 18) {
             return false;
         }
-        if (txtPass.getText().length() < 8) {
-            return false;
-        }
-        return true;
+        return txtPass.getText().length() >= 8;
     }
 
     // Load data
