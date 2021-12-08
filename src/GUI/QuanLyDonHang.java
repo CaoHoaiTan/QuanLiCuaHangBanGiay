@@ -857,7 +857,7 @@ public class QuanLyDonHang extends JInternalFrame {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-						JFrame frame = new JFrame();
+
 						JOptionPane.showMessageDialog(frame,
 								"Lỗi không xóa được",
 								"Lỗi",
@@ -876,26 +876,37 @@ public class QuanLyDonHang extends JInternalFrame {
 				//Xóa 1 dòng
 				else if((them == true && tim == false) ||(them == false && tim == true) )
 				{
-					//Xóa 1 dòng trong table
-					rowtable = tblDetail.getSelectedRow();
-					model.removeRow(rowtable);
+					try {
+						//Xóa 1 dòng trong table
+						//Lỗi lần đầu tiên là hàng đầu
+						rowtable = tblDetail.getSelectedRow();
+						model.removeRow(rowtable);
+						//lblDiscount.setText(String.valueOf(rowtable));
 
-					//Reset STT và tổng tiền
-					float sum = 0;
+						//Reset STT và tổng tiền
+						float sum = 0;
 
-					for(int i=0;i< tblDetail.getRowCount();i++)
-					{
-						tblDetail.setValueAt(i+1, i, 0);
+						for(int i=0;i< tblDetail.getRowCount();i++)
+						{
+							tblDetail.setValueAt(i+1, i, 0);
+						}
+
+						//Do có hàng cuối trống
+						for(int i=0;i< tblDetail.getRowCount()-1;i++)
+						{
+							sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
+						}
+
+						sum -= sum * discount /100;
+						txtTotalCost.setText(String.format("%.0f", sum));
+					} catch (Exception  e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(frame,
+								"Vui lòng chọn hàng muốn xóa",
+								"Lỗi",
+								JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
 					}
-
-					//Do có hàng cuối trống
-					for(int i=0;i< tblDetail.getRowCount()-1;i++)
-					{
-						sum += Float.parseFloat(String.valueOf(tblDetail.getValueAt(i,5)) );
-					}
-
-					sum -= sum * discount /100;
-					txtTotalCost.setText(String.format("%.0f", sum));
 
 
 				}
