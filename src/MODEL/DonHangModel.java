@@ -34,8 +34,8 @@ public class DonHangModel {
 	}
 	
 	public static void updateDonHang(Connection conn,DonHang dh, int maDH)throws SQLException{
-		String sql ="DELETE FROM [Order]\n"
-				+ "SET staffName = ?, phoneNumGuess = ?\n"
+		String sql ="UPDATE [Order]\n"
+				+ "SET staffName = ?, phoneNumGuess = ? \n"
 				+ "WHERE id = ?;";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, dh.getStaffName());

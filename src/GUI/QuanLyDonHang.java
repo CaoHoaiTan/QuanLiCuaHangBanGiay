@@ -928,6 +928,7 @@ public class QuanLyDonHang extends JInternalFrame {
 
 					dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
 					dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
+					dHang.setStaffName(txtMaNV.getText());
 
 					try {
 						if(tblDetail.getRowCount()>1) {
@@ -1027,6 +1028,7 @@ public class QuanLyDonHang extends JInternalFrame {
 
 							dHang.setCost(Float.parseFloat(txtTotalCost.getText()));
 							dHang.setPhoneNumGuess(cmbPhone.getSelectedItem().toString());
+							dHang.setStaffName(txtMaNV.getText());
 
 							DonHangModel.updateDonHang(conn, dHang, maDH);
 

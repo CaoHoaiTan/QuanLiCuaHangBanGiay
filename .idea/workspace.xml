@@ -4,41 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_formdev_flatlaf_1_6_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_sqlserver_mssql_jdbc_9_4_0_jre16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_miglayout_miglayout_3_5_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jfreechart_1_5_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax_servlet_jsp_jstl_1_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyHangHoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyHangHoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyKhachHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyNhanVien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyThuongHieu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyThuongHieu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ThongKeDoanhThu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ThongKeDoanhThu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/frmMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/frmMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MODEL/KhachHangModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MODEL/KhachHangModel.class" afterDir="false" />
+    <list default="true" id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="Add file main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuanLyCuaHangBanGiay.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyDonHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyDonHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MODEL/DonHangModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MODEL/DonHangModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MODEL/DonHangModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MODEL/DonHangModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +32,8 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="21zmLU86OrwQQ2MIANvHU3F32TA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -84,7 +52,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MTHome" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.QuanLiCuaHangBanGiay">
     <configuration name="ConnectionUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DAO.ConnectionUtils" />
       <module name="QuanLyCuaHangBanGiay" />
@@ -125,10 +93,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.QuanLiCuaHangBanGiay" />
+      <item itemvalue="Application.ConnectionUtils" />
+      <item itemvalue="Application.frmMain" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.QuanLiCuaHangBanGiay" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.frmMain" />
         <item itemvalue="Application.ConnectionUtils" />
       </list>
@@ -160,5 +134,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
