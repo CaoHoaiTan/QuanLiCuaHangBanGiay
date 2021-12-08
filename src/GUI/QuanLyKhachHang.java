@@ -76,22 +76,6 @@ public class QuanLyKhachHang extends JInternalFrame {
 	private final JButton btnTim = new JButton("Tìm kiếm");
 	private boolean isInsert;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					QuanLyKhachHang frame = new QuanLyKhachHang();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	// Kiểm tra thông tin nhập vào
 	private boolean isValidInput() {
 		String sdt = txtPhoneNumber.getText();

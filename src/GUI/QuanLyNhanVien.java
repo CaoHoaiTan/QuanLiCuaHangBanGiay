@@ -68,22 +68,6 @@ public class QuanLyNhanVien extends JInternalFrame {
     private final JPanel panel_1 = new JPanel();
     private final JLabel lblAvatar = new JLabel("IMG");
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    QuanLyKhachHang frame = new QuanLyKhachHang();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     // Kiểm tra thông tin nhập vào
     private boolean isValidInput() {
         if (txtFullName.getText().isBlank() || txtSDT.getText().isBlank() || txtNgaySinh.getText().isBlank()

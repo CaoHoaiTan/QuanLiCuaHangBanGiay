@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_formdev_flatlaf_1_6_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_sqlserver_mssql_jdbc_9_4_0_jre16.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_miglayout_miglayout_3_5_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jfreechart_1_5_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax_servlet_jsp_jstl_1_2_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyHangHoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyHangHoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyKhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyKhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyNhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyNhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyThuongHieu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyThuongHieu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/ThongKeDoanhThu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ThongKeDoanhThu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/frmMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/frmMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyNhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MODEL/KhachHangModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MODEL/KhachHangModel.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="21zmLU86OrwQQ2MIANvHU3F32TA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../QuanLiCuaHangBanGiay" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MTHome" />
+  </component>
+  <component name="RunManager" selected="Application.QuanLiCuaHangBanGiay">
+    <configuration name="ConnectionUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DAO.ConnectionUtils" />
+      <module name="QuanLyCuaHangBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuanLiCuaHangBanGiay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="QuanLiCuaHangBanGiay" />
+      <module name="QuanLyCuaHangBanGiay" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="frmMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.frmMain" />
+      <module name="QuanLyCuaHangBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.QuanLiCuaHangBanGiay" />
+        <item itemvalue="Application.frmMain" />
+        <item itemvalue="Application.ConnectionUtils" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="" />
+      <created>1638952239042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638952239042</updated>
+      <workItem from="1638952243731" duration="139000" />
+      <workItem from="1638952430658" duration="1470000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

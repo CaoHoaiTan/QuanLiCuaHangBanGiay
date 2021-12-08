@@ -94,22 +94,6 @@ public class ThongKeDoanhThu extends JInternalFrame {
         return dataset;
     }
 
-
-    //
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-
-                    ThongKeDoanhThu frame = new ThongKeDoanhThu();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     /**
      * Create the frame.
      *

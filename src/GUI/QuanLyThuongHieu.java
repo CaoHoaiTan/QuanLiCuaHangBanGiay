@@ -46,22 +46,6 @@ public class QuanLyThuongHieu extends JInternalFrame {
     private final JTextField txtLogo = new JTextField();
     private final JLabel lblImageLogo = new JLabel("IMG");
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    QuanLyKhachHang frame = new QuanLyKhachHang();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     // Kiểm tra thông tin nhập vào
     private boolean isValidInput() {
 		return !txtTenTH.getText().isBlank() && !txtEmail.getText().isBlank();

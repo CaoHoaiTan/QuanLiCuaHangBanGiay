@@ -9,8 +9,5 @@
         <module name="QuanLyCuaHangBanGiay" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="QuanLyCuaHangBanGiay" target="16" />
-    </bytecodeTargetLevel>
   </component>
 </project>
