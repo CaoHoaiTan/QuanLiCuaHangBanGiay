@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="Add file main">
+    <list default="true" id="ce38827a-3941-4136-8e90-c719560fa6bf" name="Changes" comment="Update QuanLiDonHang">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyCuaHangBanGiay.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/QuanLyDonHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/QuanLyDonHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MODEL/DonHangModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MODEL/DonHangModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/QuanLyDonHang.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MODEL/DonHangModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MODEL/DonHangModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +35,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../QuanLiCuaHangBanGiay" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Digital_Signature" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -118,7 +111,17 @@
       <updated>1638952239042</updated>
       <workItem from="1638952243731" duration="139000" />
       <workItem from="1638952430658" duration="1470000" />
+      <workItem from="1639059808413" duration="643000" />
+      <workItem from="1639122880308" duration="2574000" />
     </task>
+    <task id="LOCAL-00001" summary="Update QuanLiDonHang">
+      <created>1638956185006</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638956185006</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,5 +138,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update QuanLiDonHang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update QuanLiDonHang" />
   </component>
 </project>

@@ -33,6 +33,21 @@ begin
 end
 go
 
+-- Delete OrderDetail
+drop trigger if exists after_delete_OrderDetail
+go
+create trigger after_delete_OrderDetail on OrderDetail
+    after delete as
+declare @idProduct int, @quantity int
+select  @idProduct = old.idProduct, @quantity = old.quantity
+from deleted old
+begin
+update Product
+set quantity = quantity + @quantity
+where id = @idProduct
+end
+go
+
 -- After Update Order
 drop trigger if exists after_update_Order
 go
