@@ -292,7 +292,7 @@ public class QuanLyDonHang extends JInternalFrame {
 				txtAddress.setText(rs.getString("address"));
 				discount = rs.getInt("discount");
 				lblDiscount.setText("Ưu đãi: " + rs.getInt("discount") + "%");
-				lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%.0f", rs.getFloat("totalCost"))+ " vnđ");
+				lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%,.0f", rs.getFloat("totalCost"))+ " vnđ");
 			}
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -459,8 +459,8 @@ public class QuanLyDonHang extends JInternalFrame {
 	// Reset input text
 	private void resetInputText() {
 		txtTotalCost.setText("0");
-		lblDiscount.setText("Ưu đãi: 0%");
-		lblTotalcost.setText("Tổng tiền đã mua: 0vnđ");
+//		lblDiscount.setText("Ưu đãi: 0%");
+//		lblTotalcost.setText("Tổng tiền đã mua: 0vnđ");
 	}
 	/**
 	 * Create the frame.
@@ -573,7 +573,7 @@ public class QuanLyDonHang extends JInternalFrame {
 						txtAddress.setText(rs.getString("address"));
 						discount = rs.getInt("discount");
 						lblDiscount.setText("Ưu đãi: " + rs.getInt("discount") + "%");
-						lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%.0f", rs.getFloat("totalCost"))+ " vnđ");
+						lblTotalcost.setText("Tổng số tiền đã mua: " + String.format("%,.0f", rs.getFloat("totalCost"))+ " vnđ");
 					}
 
 					//Update lại tổng tiền đơn hàng
